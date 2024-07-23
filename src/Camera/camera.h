@@ -10,8 +10,8 @@
 #include <QKeyEvent>
 #include <QTime>
 
-#define CAM_NEAR 0.1f      //Ïà»ú½ü²Ã¼ôÖµ
-#define CAM_FAR  1000000.0f  //Ïà»úÔ¶²Ã¼ôÖµ
+#define CAM_NEAR 0.1f      //ç›¸æœºè¿‘è£å‰ªå€¼
+#define CAM_FAR  1000000.0f  //ç›¸æœºè¿œè£å‰ªå€¼
 enum CAMERA_MOVE_DIR{
     NONE             = -1,
     FRONT            =  0,
@@ -43,9 +43,9 @@ public:
     QVector3D getCameraPos() const;
     void setCameraPos(const QVector3D &value);
 
-    void init();                    //³õÊ¼»¯ÉãÏñ»ú
+    void init();                    //åˆå§‹åŒ–æ‘„åƒæœº
 
-    QMatrix4x4 getView() const;     //»ñÈ¡¹Û²ì¾ØÕó
+    QMatrix4x4 getView() const;     //è·å–è§‚å¯ŸçŸ©é˜µ
 
     void moveCamera(CAMERA_MOVE_DIR dir);
     void moveCamera(QVector3D pos);
@@ -64,24 +64,24 @@ public slots:
 
 private:
 
-    float yaw;                  //Æ«º½½Ç
-    float pitch;                //¸©ÊÓ½Ç
-    float sensitivity;          //Êó±êÁéÃô¶È
+    float yaw;                  //åèˆªè§’
+    float pitch;                //ä¿¯è§†è§’
+    float sensitivity;          //é¼ æ ‡çµæ•åº¦
 
-    QVector3D cameraPos;        //ÉãÏñ»ú³õÊ¼Î»ÖÃ
+    QVector3D cameraPos;        //æ‘„åƒæœºåˆå§‹ä½ç½®
 
-    QVector3D cameraDirection;  //ÉãÏñ»ú·½Ïò
-    QVector3D cameraRight;      //ÉãÏñ»úÓÒÏòÁ¿
-    QVector3D cameraUp;         //ÉãÏñ»úÉÏÏòÁ¿
+    QVector3D cameraDirection;  //æ‘„åƒæœºæ–¹å‘
+    QVector3D cameraRight;      //æ‘„åƒæœºå³å‘é‡
+    QVector3D cameraUp;         //æ‘„åƒæœºä¸Šå‘é‡
 
-    float moveSpeed;    //¿ØÖÆÒÆ¶¯ËÙ¶È
-    QSet<int> keys;     //¼ÇÂ¼µ±Ç°±»°´ÏÂ°´¼üµÄ¼¯ºÏ
+    float moveSpeed;    //æ§åˆ¶ç§»åŠ¨é€Ÿåº¦
+    QSet<int> keys;     //è®°å½•å½“å‰è¢«æŒ‰ä¸‹æŒ‰é”®çš„é›†åˆ
 
-    int timeId;         //¶¨Ê±Æ÷id£º´Ë¶¨Ê±Æ÷ÓÃÓÚÍê³É¼üÅÌÒÆ¶¯ÊÂ¼ş
-    float deltaTime;    // µ±Ç°Ö¡ÓëÉÏÒ»Ö¡µÄÊ±¼ä²î
-    float lastFrame;    // ÉÏÒ»Ö¡µÄÊ±¼ä
+    int timeId;         //å®šæ—¶å™¨idï¼šæ­¤å®šæ—¶å™¨ç”¨äºå®Œæˆé”®ç›˜ç§»åŠ¨äº‹ä»¶
+    float deltaTime;    // å½“å‰å¸§ä¸ä¸Šä¸€å¸§çš„æ—¶é—´å·®
+    float lastFrame;    // ä¸Šä¸€å¸§çš„æ—¶é—´
 
-    QMatrix4x4 view;    //¹Û²ì¾ØÕó
+    QMatrix4x4 view;    //è§‚å¯ŸçŸ©é˜µ
     QMatrix4x4 m_projection;
 
 };

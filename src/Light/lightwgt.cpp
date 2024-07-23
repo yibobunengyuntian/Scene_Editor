@@ -9,7 +9,7 @@ LightWgt::LightWgt(QToolButton *bindBtn, QWidget *parent) :
     resBtn->setStyleSheet(m_styleSheet);
     resBtn->setToolButtonStyle(Qt::ToolButtonIconOnly);
     resBtn->setIcon(QIcon(":/res/icon/res.png"));
-    //resBtn->setToolTip(QStringLiteral("ÖØÖÃ"));
+    //resBtn->setToolTip(QStringLiteral("Ð¾Ð¿Ð¾â”œ"));
 
     dirSpinBox_x->setValue(static_cast<double>(m_lightDir.x()));
     dirSpinBox_y->setValue(static_cast<double>(m_lightDir.y()));

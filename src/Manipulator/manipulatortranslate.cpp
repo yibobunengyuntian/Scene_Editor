@@ -5,7 +5,7 @@ ManipulatorTranslate::ManipulatorTranslate()
 {
     m_manipulator_type = MANIPULATOR_TYPE::TRANSLATE;
     m_indices = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
-                                    12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23};    // ∂•µ„À˜“˝
+                                    12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23};    // È°∂ÁÇπÁ¥¢Âºï
 
     m_verticesBase = {{QVector3D(0, 0, 0), QVector3D(1, 0, 0), QVector2D()},
                   {QVector3D(1, 0, 0), QVector3D(1, 0, 0), QVector2D()},
@@ -94,7 +94,7 @@ bool ManipulatorTranslate::mouseDetection(QPoint pos, int width, int height)
     QVector2D z2((posZ2.x()+1) * w, (-posZ2.y()+1) * h);
     QVector2D z3((posZ3.x()+1) * w, (-posZ3.y()+1) * h);
     m_vertices = m_verticesBase;
-    //≈–∂œ «∑Ò‘⁄»˝Ω«–Œƒ⁄
+    //Âà§Êñ≠ÊòØÂê¶Âú®‰∏âËßíÂΩ¢ÂÜÖ
     if(isPosInTriangle_2D(QPointF(x, y), x1.toPointF(), x2.toPointF(), x3.toPointF()))
     {
         for(uint i = 0; i < m_vertices.size(); ++i)

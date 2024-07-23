@@ -154,7 +154,7 @@ void Camera::setDir(float xoffset, float yoffset)
     yoffset *= sensitivity;
     yaw   += xoffset;
     pitch += yoffset;
-    if(pitch > 1.55f)         //½«¸©ÊÓ½ÇÏÞÖÆµ½[-89¡ã,89¡ã]£¬89¡ãÔ¼µÈÓÚ1.55
+    if(pitch > 1.55f)         //å°†ä¿¯è§†è§’é™åˆ¶åˆ°[-89Â°,89Â°]ï¼Œ89Â°çº¦ç­‰äºŽ1.55
         pitch =  1.55f;
     if(pitch < -1.55f)
         pitch = -1.55f;

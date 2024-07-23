@@ -7,22 +7,22 @@ CameraTool::CameraTool(QWidget *parent) :
 {
     setupUi(this);
     move(0, 0);
-    setWindowFlags(Qt::FramelessWindowHint);//ÎŞ´°Ìå
-    setAttribute(Qt::WA_TranslucentBackground);//±³¾°Í¸Ã÷
+    setWindowFlags(Qt::FramelessWindowHint);//æ— çª—ä½“
+    setAttribute(Qt::WA_TranslucentBackground);//èƒŒæ™¯é€æ˜
 
     speedBox->setContextMenuPolicy(Qt::NoContextMenu);
     xBox->setContextMenuPolicy(Qt::NoContextMenu);
     yBox->setContextMenuPolicy(Qt::NoContextMenu);
     zBox->setContextMenuPolicy(Qt::NoContextMenu);
 
-    speedBox->setToolTip(QStringLiteral("Ïà»úÒÆ¶¯ËÙ¶È"));
-    xBox->setToolTip(QStringLiteral("Ïà»úÎ»ÖÃ X ×ø±ê"));
-    yBox->setToolTip(QStringLiteral("Ïà»úÎ»ÖÃ Y ×ø±ê"));
-    zBox->setToolTip(QStringLiteral("Ïà»úÎ»ÖÃ Z ×ø±ê"));
+    speedBox->setToolTip(("ç›¸æœºç§»åŠ¨é€Ÿåº¦"));
+    xBox->setToolTip(("ç›¸æœºä½ç½® X åæ ‡"));
+    yBox->setToolTip(("ç›¸æœºä½ç½® Y åæ ‡"));
+    zBox->setToolTip(("ç›¸æœºä½ç½® Z åæ ‡"));
     resBtn->setStyleSheet(m_styleSheet);
     resBtn->setToolButtonStyle(Qt::ToolButtonIconOnly);
     resBtn->setIcon(QIcon(":/res/icon/res.png"));
-    resBtn->setToolTip(QStringLiteral("Ïà»ú¸´Î»"));
+    resBtn->setToolTip(("ç›¸æœºå¤ä½"));
 
     QPixmap pixmap;
     pixmap.load(":/res/icon/running.png");
