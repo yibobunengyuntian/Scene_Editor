@@ -24,7 +24,7 @@ uint PropertyManager::getTextureId(const QString &path, bool addtoProperty)
     {
         m_pPropertysWgt->addIcon(path, 0);
     }
-    QApplication::processEvents(QEventLoop::AllEvents, 100);//防止阻塞界面
+    QApplication::processEvents(QEventLoop::AllEvents, 100);//闃叉闃诲鐣岄潰
     return tex.id;
 }
 
@@ -91,7 +91,7 @@ Node *PropertyManager::loadNodeByData(QVariantMap data)
     QFileInfo fileInfo(path);
     if(!fileInfo.isFile())
     {
-        qDebug() << path << QStringLiteral(" 加载失败!");
+        qDebug() << path << (" 鍔犺浇澶辫触!");
         return nullptr;
     }
     data["path"] = path;
@@ -274,7 +274,7 @@ void PropertyManager::openWorld(const QString &world)
     QByteArray data = file.readAll();
     file.close();
 
-    // 解析
+    // 瑙ｆ瀽
     QJsonDocument jsonDocu = QJsonDocument::fromJson(data);
     QJsonObject jsonObject = jsonDocu.object();
 
@@ -286,7 +286,7 @@ void PropertyManager::openWorld(const QString &world)
         emit setEnabledSignal(false);
         //m_pLoadWgt->move((m_pLoadWgt->parentWidget()->width() - m_pLoadWgt->width())/2, (m_pLoadWgt->parentWidget()->height() - m_pLoadWgt->height())/2);
         m_pLoadWgt->show();
-        m_pLoadWgt->onSetTip(QStringLiteral("正在加载模型 0 %"));
+        m_pLoadWgt->onSetTip(("姝ｅ湪鍔犺浇妯″瀷 0 %"));
         emit setTaskbarProgressValue(0);
         QFutureWatcher<void> *pWatcher = new QFutureWatcher<void>;
         QFuture<void> future = QtConcurrent::run([=]()
@@ -300,20 +300,20 @@ void PropertyManager::openWorld(const QString &world)
                 }
                 m_tmpNodes.append(pNode);
                 int num = m_tmpNodes.size()* 100 / childs.size();
-                g_PropertyManager->loadWgt()->onSetTip(QString(QStringLiteral("正在加载模型 %1 %")).arg(num));
+                g_PropertyManager->loadWgt()->onSetTip(QString(("姝ｅ湪鍔犺浇妯″瀷 %1 %")).arg(num));
                 emit setTaskbarProgressValue(num*0.3);
             }
         });
 
         connect(pWatcher, &QFutureWatcher<void>::finished,this,[=](){
-            m_pLoadWgt->onSetTip(QStringLiteral("正在加载纹理 0 %"));
+            m_pLoadWgt->onSetTip(("姝ｅ湪鍔犺浇绾圭悊 0 %"));
             int idx = 0;
             foreach(auto node, m_nodePropertys)
             {
                 node->setUpTextureId();
                 idx++;
                 int num = idx* 100 / m_nodePropertys.size();
-                g_PropertyManager->loadWgt()->onSetTip(QString(QStringLiteral("正在加载纹理 %1 %")).arg(num));
+                g_PropertyManager->loadWgt()->onSetTip(QString(("姝ｅ湪鍔犺浇绾圭悊 %1 %")).arg(num));
                 emit setTaskbarProgressValue(30 + num*0.3);
             }
             foreach(auto node, m_tmpNodes)
@@ -336,7 +336,7 @@ void PropertyManager::saveWorld(QString path)
     {
         QFileDialog dialog;
         dialog.setFileMode(QFileDialog::AnyFile);
-        path = dialog.getSaveFileName(nullptr,QStringLiteral("场景保存"), g_PropertyManager->config()->Get("path", "world").toString(), "world file (*.world)");
+        path = dialog.getSaveFileName(nullptr,("鍦烘櫙淇濆瓨"), g_Config->Get("path", "world").toString(), "world file (*.world)");
         m_worldPath = path;
         if(path == "")
         {
@@ -369,8 +369,6 @@ PropertyManager::PropertyManager()
 {
     m_pUndoStack = new QUndoStack;
     m_pPropertysWgt = new PropertysWgt();
-    m_pConfig = new ConfigFile;
-    m_pConfig->fileName(qApp->applicationDirPath()+"/ini.cfg");
     m_pNodesTreeWgt = new NodesTreeWgt();
     m_pNodeEditWgt  = new NodeEditWgt();
     m_pLoadWgt      = new LoadingWgt();
@@ -382,9 +380,9 @@ PropertyManager::PropertyManager()
 
     m_pCamera = new Camera();
 
-    m_nodeSelectState.insert(SHOWAABB, m_pConfig->Get("nodeSelectState", SHOWAABB));
-    m_nodeSelectState.insert(SHOWMESH, m_pConfig->Get("nodeSelectState", SHOWMESH));
-    m_nodeSelectState.insert(SHOWOUTLINE, m_pConfig->Get("nodeSelectState", SHOWOUTLINE));
+    m_nodeSelectState.insert(SHOWAABB, g_Config->Get("nodeSelectState", SHOWAABB));
+    m_nodeSelectState.insert(SHOWMESH, g_Config->Get("nodeSelectState", SHOWMESH));
+    m_nodeSelectState.insert(SHOWOUTLINE, g_Config->Get("nodeSelectState", SHOWOUTLINE));
 }
 
 Node *PropertyManager::loadModel(const QString &path, bool addtoProperty)

@@ -34,7 +34,6 @@ class PropertyManager :public QObject
 public:
     static PropertyManager* getPropertyManager();
 
-    ConfigFile   *config()      {return m_pConfig;}
     PropertysWgt *propertysWgt(){return m_pPropertysWgt;}
     NodesTreeWgt *nodesTreeWgt(){return m_pNodesTreeWgt;}
     NodeEditWgt  *nodeEditWgt() {return m_pNodeEditWgt;}
@@ -54,9 +53,9 @@ public:
     void selectNode(Node *node);
     void setNodeSelectState(QVariantMap nodeSelectState){
         m_nodeSelectState = nodeSelectState;
-        m_pConfig->Set("nodeSelectState", SHOWAABB, m_nodeSelectState.value(SHOWAABB));
-        m_pConfig->Set("nodeSelectState", SHOWMESH, m_nodeSelectState.value(SHOWMESH));
-        m_pConfig->Set("nodeSelectState", SHOWOUTLINE, m_nodeSelectState.value(SHOWOUTLINE));
+        g_Config->Set("nodeSelectState", SHOWAABB, m_nodeSelectState.value(SHOWAABB));
+        g_Config->Set("nodeSelectState", SHOWMESH, m_nodeSelectState.value(SHOWMESH));
+        g_Config->Set("nodeSelectState", SHOWOUTLINE, m_nodeSelectState.value(SHOWOUTLINE));
         selectNode(selectNode());
     }
 
@@ -96,7 +95,6 @@ private:
     static PropertyManager *m_propertyManager;
 
     QUndoStack *m_pUndoStack               = nullptr;
-    ConfigFile *m_pConfig                  = nullptr;
     PropertysWgt *m_pPropertysWgt          = nullptr;
     NodesTreeWgt *m_pNodesTreeWgt          = nullptr;
     NodeEditWgt  *m_pNodeEditWgt           = nullptr;

@@ -23,10 +23,10 @@ public:
     virtual void keyPressEvent(QKeyEvent *event) = 0;
     virtual void keyReleaseEvent(QKeyEvent *event) = 0;
 
-    virtual void dropEvent(QDropEvent *event) = 0;								//·ÅÏÂ¶¯×÷
-    virtual void dragEnterEvent(QDragEnterEvent *event) = 0;					//ÍĞµ½½øÈë´°¿Ú¶¯×÷
-    virtual void dragMoveEvent(QDragMoveEvent *event) = 0;						//ÍÏ×ÅÎïÌåÔÚ´°¿ÚÒÆ¶¯
-    virtual void dragLeaveEvent(QDragLeaveEvent *event) = 0;					//ÍÏ×ßÁËÃ»ÓĞÊÍ·Å
+    virtual void dropEvent(QDropEvent *event) = 0;								//æ”¾ä¸‹åŠ¨ä½œ
+    virtual void dragEnterEvent(QDragEnterEvent *event) = 0;					//æ‰˜åˆ°è¿›å…¥çª—å£åŠ¨ä½œ
+    virtual void dragMoveEvent(QDragMoveEvent *event) = 0;						//æ‹–ç€ç‰©ä½“åœ¨çª—å£ç§»åŠ¨
+    virtual void dragLeaveEvent(QDragLeaveEvent *event) = 0;					//æ‹–èµ°äº†æ²¡æœ‰é‡Šæ”¾
 
 protected:
     RenderWgt *m_pRenderWgt = nullptr;

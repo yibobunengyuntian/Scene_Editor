@@ -18,10 +18,10 @@ public:
     virtual void keyPressEvent(QKeyEvent *event) override;
     virtual void keyReleaseEvent(QKeyEvent *event) override;
 
-    virtual void dropEvent(QDropEvent *event) override;								//·ÅÏÂ¶¯×÷
-    virtual void dragEnterEvent(QDragEnterEvent *event) override;					//ÍĞµ½½øÈë´°¿Ú¶¯×÷
-    virtual void dragMoveEvent(QDragMoveEvent *event) override;						//ÍÏ×ÅÎïÌåÔÚ´°¿ÚÒÆ¶¯
-    virtual void dragLeaveEvent(QDragLeaveEvent *event) override;					//ÍÏ×ßÁËÃ»ÓĞÊÍ·Å
+    virtual void dropEvent(QDropEvent *event) override;								//æ”¾ä¸‹åŠ¨ä½œ
+    virtual void dragEnterEvent(QDragEnterEvent *event) override;					//æ‰˜åˆ°è¿›å…¥çª—å£åŠ¨ä½œ
+    virtual void dragMoveEvent(QDragMoveEvent *event) override;						//æ‹–ç€ç‰©ä½“åœ¨çª—å£ç§»åŠ¨
+    virtual void dragLeaveEvent(QDragLeaveEvent *event) override;					//æ‹–èµ°äº†æ²¡æœ‰é‡Šæ”¾
 };
 
 #endif // OPERATORDEFUALT_H

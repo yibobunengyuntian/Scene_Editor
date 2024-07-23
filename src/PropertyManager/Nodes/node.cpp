@@ -60,9 +60,9 @@ QVariantMap Node::saveData()
     data.insert("name", m_name);
     data.insert("type", m_nodeType);
 
-    //获取程序所在的路径
+    //鑾峰彇绋嬪簭鎵�鍦ㄧ殑璺緞
     QDir dir=QDir::current();
-        //将绝对路径转换为相对路径
+        //灏嗙粷瀵硅矾寰勮浆鎹负鐩稿璺緞
     QString relPath = dir.relativeFilePath(m_path);
     data.insert("path", relPath);
     data.insert("idxInModel", m_nIdxInModel);

@@ -166,11 +166,11 @@ void Mesh::Draw(QOpenGLShaderProgram &shader, bool isDepthMap)
             m_glFuns->glLineWidth(2);
             //        m_glFuns->glPolygonOffset(-1.0f, -1.0f);      // Shift depth values
             //        m_glFuns->glEnable(GL_POLYGON_OFFSET_LINE);
-            // m_glFuns->glEnable(GL_POLYGON_OFFSET_FILL);//���������ƫ��
-            //        m_glFuns->glPolygonOffset(1.0f, 1.0f); // ����ƫ������ֵ��������Ҫ���е���
-            //        m_glFuns->glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);//������ģʽ��Ϊ��
+            // m_glFuns->glEnable(GL_POLYGON_OFFSET_FILL);//开启多边形偏移
+            //        m_glFuns->glPolygonOffset(1.0f, 1.0f); // 调整偏移量的值，根据需要进行调整
+            //        m_glFuns->glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);//将绘制模式改为线
             m_glFuns->glDrawElements(GL_LINES,(GLsizei)m_pMeshData->m_indices.size() - 24,GL_UNSIGNED_INT,0);
-            //        m_glFuns->glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);//������ģʽ��Ϊ��
+            //        m_glFuns->glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);//将绘制模式改为面
             m_glFuns->glLineWidth(1);
             shader.setUniformValue("isMesh", false);
         }
@@ -189,20 +189,20 @@ void Mesh::Draw(QOpenGLShaderProgram &shader, bool isDepthMap)
         }
         else
         {
-            // ������ģ�建����д��ֵ
+            // 允许向模板缓冲区写入值
             m_glFuns->glStencilMask(0xFF);
-            // ����OpenGLӦ�ö�ģ�建��������Ƭ�ν��л��ƣ�ͬʱ��ͨ��ģ����Լ���Ȳ��Ժ�ģ�建���������ݻᱻ�滻��1(���滻�Ĳ�������glStencilOpָ���ģ��滻��ֵ������glStencilFunc����)
+            // 告诉OpenGL应该对模板缓冲中所有片段进行绘制，同时在通过模板测试及深度测试后模板缓冲区的内容会被替换成1(被替换的操作是由glStencilOp指定的，替换的值则是由glStencilFunc给定)
             m_glFuns->glStencilFunc(GL_ALWAYS, 1, 0xFF);
             m_glFuns->glDrawElements(GL_TRIANGLES,(GLsizei)m_pMeshData->m_indices.size() - 24,GL_UNSIGNED_INT,0);
             shader.setUniformValue("isMesh", true);
 
-            //����ģ�ͱ߿�
-            // ���Ʋ�����1���������ڵڶ��λ�ģ�ͻᱻ�Ŵ����Ա��Ŵ����һ���ֻᱻ����
-            m_glFuns->glStencilMask(0x00);//�ر�д��ģ�建�壬����ģ�建����ֻ���������ӵĻ���ֵ�ǡ�1��
+            //绘制模型边框
+            // 绘制不等于1的区域，由于第二次会模型会被放大，所以被放大的那一部分会被绘制
+            m_glFuns->glStencilMask(0x00);//关闭写进模板缓冲，现在模板缓冲里只有两个箱子的缓冲值是“1”
             //        m_glFuns->glDisable(GL_DEPTH_TEST);
             m_glFuns->glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
 
-            //ʹ������������ʵ
+            //使轮廓尽可能真实
             QMatrix4x4 mat = modelMat();
             double xl = (m_aabb.maxPos.x() - m_aabb.minPos.x()) * m_scale.x();
             double yl = (m_aabb.maxPos.y() - m_aabb.minPos.y()) * m_scale.y();
@@ -228,8 +228,8 @@ void Mesh::Draw(QOpenGLShaderProgram &shader, bool isDepthMap)
             //        m_glFuns->glEnable(GL_DEPTH_TEST);
 
             shader.setUniformValue("isMesh", false);
-            m_glFuns->glStencilMask(0xFF);//���¿���д��ģ�建��
-            m_glFuns->glStencilFunc(GL_ALWAYS, 1, 0xFF); //��ΪglClear()���������������ģ�建�壬����������Ҫ��ԭ����ģ�建�幦�ܺ���glStencilFunc
+            m_glFuns->glStencilMask(0xFF);//重新开启写进模板缓冲
+            m_glFuns->glStencilFunc(GL_ALWAYS, 1, 0xFF); //因为glClear()函数并不能清除掉模板缓冲，所以我们需要还原缓冲模板缓冲功能函数glStencilFunc
         }
         foreach(auto node, m_childs)
         {

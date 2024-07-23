@@ -275,28 +275,28 @@ unsigned int Model::TextureFromFile(const char *path, const string &directory)
 }
 QString Model::findFile(QString filepath, QString filename)
 {
-    QDir dir(filepath); // ´´½¨dirÄ¿Â¼¶ÔÏó
-    dir.setFilter(QDir::Files | QDir::NoSymLinks); // ÊµÏÖ¶ÔÎÄ¼şµÄ¹ıÂË
-    dir.setSorting(QDir::Size | QDir::Reversed); // ÊµÏÖ¶ÔÎÄ¼şÊä³öµÄÅÅĞò
-    QFileInfoList list = dir.entryInfoList(); // ´æ·ÅÎÄ¼şĞÅÏ¢ÁĞ±í
+    QDir dir(filepath); // åˆ›å»ºdirç›®å½•å¯¹è±¡
+    dir.setFilter(QDir::Files | QDir::NoSymLinks); // å®ç°å¯¹æ–‡ä»¶çš„è¿‡æ»¤
+    dir.setSorting(QDir::Size | QDir::Reversed); // å®ç°å¯¹æ–‡ä»¶è¾“å‡ºçš„æ’åº
+    QFileInfoList list = dir.entryInfoList(); // å­˜æ”¾æ–‡ä»¶ä¿¡æ¯åˆ—è¡¨
 
-    for (int i = 0; i < list.size(); ++i) // Ñ­»·¶ÁÈ¡ÎÄ¼şĞÅÏ¢ÁĞ±íµÄĞÅÏ¢
+    for (int i = 0; i < list.size(); ++i) // å¾ªç¯è¯»å–æ–‡ä»¶ä¿¡æ¯åˆ—è¡¨çš„ä¿¡æ¯
     {
-        QFileInfo fileinfo = list.at(i); // »ñÈ¡µ¥¸öÎÄ¼şĞÅÏ¢
-        QString suffix = fileinfo.fileName(); // »ñÈ¡µ¥¸öÎÄ¼şÃû
+        QFileInfo fileinfo = list.at(i); // è·å–å•ä¸ªæ–‡ä»¶ä¿¡æ¯
+        QString suffix = fileinfo.fileName(); // è·å–å•ä¸ªæ–‡ä»¶å
         if (QString::compare(suffix, filename, Qt::CaseInsensitive) == 0)
         {
-            return fileinfo.absoluteFilePath(); // ±£´æµ¥¸öVARÎÄ¼şµÄÂ·¾¶
+            return fileinfo.absoluteFilePath(); // ä¿å­˜å•ä¸ªVARæ–‡ä»¶çš„è·¯å¾„
         }
     }
-    dir.setFilter(QDir::Dirs | QDir::NoSymLinks | QDir::NoDotAndDotDot); // ÊµÏÖ¶ÔÎÄ¼şµÄ¹ıÂË
-    dir.setSorting(QDir::Size | QDir::Reversed); // ÊµÏÖ¶ÔÎÄ¼şÊä³öµÄÅÅĞò
+    dir.setFilter(QDir::Dirs | QDir::NoSymLinks | QDir::NoDotAndDotDot); // å®ç°å¯¹æ–‡ä»¶çš„è¿‡æ»¤
+    dir.setSorting(QDir::Size | QDir::Reversed); // å®ç°å¯¹æ–‡ä»¶è¾“å‡ºçš„æ’åº
     list = dir.entryInfoList();
     QString ret;
-    for (int i = 0; i < list.size(); ++i) // Ñ­»·¶ÁÈ¡ÎÄ¼şĞÅÏ¢ÁĞ±íµÄĞÅÏ¢
+    for (int i = 0; i < list.size(); ++i) // å¾ªç¯è¯»å–æ–‡ä»¶ä¿¡æ¯åˆ—è¡¨çš„ä¿¡æ¯
     {
-        QFileInfo fileinfo = list.at(i); // »ñÈ¡µ¥¸öÎÄ¼şĞÅÏ¢
-        QString suffix = fileinfo.filePath(); // »ñÈ¡µ¥¸öÎÄ¼şÃû
+        QFileInfo fileinfo = list.at(i); // è·å–å•ä¸ªæ–‡ä»¶ä¿¡æ¯
+        QString suffix = fileinfo.filePath(); // è·å–å•ä¸ªæ–‡ä»¶å
         ret = findFile(suffix, filename);
         if(!ret.isEmpty())
             return ret;

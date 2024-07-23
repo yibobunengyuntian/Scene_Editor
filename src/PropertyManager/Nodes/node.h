@@ -129,7 +129,7 @@ protected:
     int m_nIdxInModel = -1;
     QMatrix4x4 m_modelMat;
     QVector3D m_tra = QVector3D(0, 0, 0);
-    QVector3D m_rot = QVector3D(0, 0, 0);   //分别为绕x y z轴旋转的角度;
+    QVector3D m_rot = QVector3D(0, 0, 0);   //鍒嗗埆涓虹粫x y z杞存棆杞殑瑙掑害;
     QVector3D m_scale = QVector3D(1, 1, 1);
 
     Node *m_pParent = nullptr;

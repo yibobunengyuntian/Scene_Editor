@@ -6,12 +6,12 @@ PropertysWgt::PropertysWgt(QWidget *parent) :
 {
     setupUi(this);
 
-    listWidget->setViewMode(QListWidget::IconMode);//ÏÔÊ¾Ä£Ê½
-    listWidget->setIconSize(QSize(50, 50));//ÉèÖÃÍ¼Æ¬´óÐ¡
-    listWidget->setSpacing(3);//¼ä¾à
-    listWidget->setResizeMode(QListView::Adjust);//ÊÊÓ¦²¼¾Öµ÷Õû
-    listWidget->setMovement(QListView::Static);//²»ÄÜÒÆ¶¯
-    listWidget->setWrapping(true);  //×Ô¶¯»»ÐÐ
+    listWidget->setViewMode(QListWidget::IconMode);//æ˜¾ç¤ºæ¨¡å¼
+    listWidget->setIconSize(QSize(50, 50));//è®¾ç½®å›¾ç‰‡å¤§å°
+    listWidget->setSpacing(3);//é—´è·
+    listWidget->setResizeMode(QListView::Adjust);//é€‚åº”å¸ƒå±€è°ƒæ•´
+    listWidget->setMovement(QListView::Static);//ä¸èƒ½ç§»åŠ¨
+    listWidget->setWrapping(true);  //è‡ªåŠ¨æ¢è¡Œ
     listWidget->setDragDropMode(QAbstractItemView::InternalMove);
 
     m_pImageView = new ImageView;
@@ -61,15 +61,15 @@ void PropertysWgt::addIcon(QString path, int type)
     {
         icon = ":/res/icon/modelIcon.png";
     }
-    QListWidgetItem *newitem = new QListWidgetItem(          //×ÔÊÊÓ¦ÁÐ±íÏîÖÐµÄÍ¼Æ¬´óÐ¡
+    QListWidgetItem *newitem = new QListWidgetItem(          //è‡ªé€‚åº”åˆ—è¡¨é¡¹ä¸­çš„å›¾ç‰‡å¤§å°
                 QIcon(QPixmap(icon).scaled(QSize(50,50))),file.fileName());
 
-    //ÉèÖÃÁÐ±íÏîÕûÌåµÄ³ß´ç
+    //è®¾ç½®åˆ—è¡¨é¡¹æ•´ä½“çš„å°ºå¯¸
     newitem->setSizeHint(QSize(80,80));
-    //ÉèÖÃÁÐ±íÏîÖÐµÄÎÄ×Ö¶ÔÆë·½Ê½£ºË®Æ½¾ÓÖÐ
+    //è®¾ç½®åˆ—è¡¨é¡¹ä¸­çš„æ–‡å­—å¯¹é½æ–¹å¼ï¼šæ°´å¹³å±…ä¸­
     newitem->setTextAlignment(Qt::AlignHCenter);
     newitem->setToolTip(path);
-    //ÔÚÁÐ±í¿òÖÐÌí¼ÓÁÐ±íÏî
+    //åœ¨åˆ—è¡¨æ¡†ä¸­æ·»åŠ åˆ—è¡¨é¡¹
     listWidget->addItem(newitem);
     PropertyFile propertyFile;
     propertyFile.path = path;
