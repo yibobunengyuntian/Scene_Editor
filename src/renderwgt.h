@@ -24,10 +24,10 @@ protected:
     virtual void keyPressEvent(QKeyEvent *event) override;
     virtual void keyReleaseEvent(QKeyEvent *event) override;
 
-    void dropEvent(QDropEvent *event) override;								//·ÅÏÂ¶¯×÷
-    void dragEnterEvent(QDragEnterEvent *event) override;					//ÍĞµ½½øÈë´°¿Ú¶¯×÷
-    void dragMoveEvent(QDragMoveEvent *event) override;						//ÍÏ×ÅÎïÌåÔÚ´°¿ÚÒÆ¶¯
-    void dragLeaveEvent(QDragLeaveEvent *event) override;					//ÍÏ×ßÁËÃ»ÓĞÊÍ·Å
+    void dropEvent(QDropEvent *event) override;								//æ”¾ä¸‹åŠ¨ä½œ
+    void dragEnterEvent(QDragEnterEvent *event) override;					//æ‰˜åˆ°è¿›å…¥çª—å£åŠ¨ä½œ
+    void dragMoveEvent(QDragMoveEvent *event) override;						//æ‹–ç€ç‰©ä½“åœ¨çª—å£ç§»åŠ¨
+    void dragLeaveEvent(QDragLeaveEvent *event) override;					//æ‹–èµ°äº†æ²¡æœ‰é‡Šæ”¾
 
     void initialize();
 
@@ -72,9 +72,9 @@ private:
     QPoint m_mouseRightDownPos;
     QCursor cursor;
     QVector3D m_oldDir;
-    float yaw = 0;                  //Æ«º½½Ç
-    float pitch = 0;                //¸©ÊÓ½Ç
-    float sensitivity = 0.005f;          //Êó±êÁéÃô¶È
+    float yaw = 0;                  //åèˆªè§’
+    float pitch = 0;                //ä¿¯è§†è§’
+    float sensitivity = 0.005f;          //é¼ æ ‡çµæ•åº¦
 
     QMap<Qt::Key, bool> m_keys;
     Node *m_pLoadModel = nullptr;

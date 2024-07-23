@@ -18,10 +18,10 @@ public:
     ~MultiComBox();
 
     void setText(const QString &text);
-    //Ìí¼ÓIiem
+    //æ·»åŠ Iiem
     void AddItems(QList<MenuItem*> menus);
 
-    //ÒÆ³ýItem
+    //ç§»é™¤Item
     void RemoveItem(int row);
 
     void Clear();

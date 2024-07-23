@@ -14,7 +14,7 @@ StartWgt::StartWgt(QWidget *parent) :
     m_timer->start(30);
     this->setWindowFlag(Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground);
-    //ÉèÖÃ±ß¿òÒõÓ°
+    //è®¾ç½®è¾¹æ¡†é˜´å½±
     QGraphicsDropShadowEffect* shadow = new QGraphicsDropShadowEffect(this);
     shadow->setOffset(0, 0);
     shadow->setColor(QColor(0, 0, 0, 60));

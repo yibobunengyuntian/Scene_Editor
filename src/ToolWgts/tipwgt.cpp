@@ -5,8 +5,8 @@ TipWgt::TipWgt(QWidget *parent) :
     QWidget(parent)
 {
     setupUi(this);
-    setWindowFlags(Qt::FramelessWindowHint);//ÎŞ´°Ìå
-    setAttribute(Qt::WA_TranslucentBackground);//±³¾°Í¸Ã÷
+    setWindowFlags(Qt::FramelessWindowHint);//æ— çª—ä½“
+    setAttribute(Qt::WA_TranslucentBackground);//èƒŒæ™¯é€æ˜
 }
 
 void TipWgt::setText(const QString &text)

@@ -45,7 +45,7 @@ void MenuItem::SetMenuName(const QString &strValue)
 {  
     m_strMenuName = strValue;  
 }  
-// 返回当前控件是否被选中
+// 杩斿洖褰撳墠鎺т欢鏄惁琚�変腑
 bool MenuItem::GetIsChecked() const  
 {  
     return m_bIsChecked;  

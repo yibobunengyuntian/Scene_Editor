@@ -31,12 +31,12 @@ void ImageItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     if(event->button()== Qt::LeftButton)
     {
-        m_startPos = event->pos();//Êó±ê×ó»÷Ê±£¬»ñÈ¡µ±Ç°Êó±êÔÚÍ¼Æ¬ÖĞµÄ×ø±ê£¬
-        m_isMove = true;//±ê¼ÇÊó±ê×ó¼ü±»°´ÏÂ
+        m_startPos = event->pos();//é¼ æ ‡å·¦å‡»æ—¶ï¼Œè·å–å½“å‰é¼ æ ‡åœ¨å›¾ç‰‡ä¸­çš„åæ ‡ï¼Œ
+        m_isMove = true;//æ ‡è®°é¼ æ ‡å·¦é”®è¢«æŒ‰ä¸‹
     }
     else if(event->button() == Qt::RightButton)
     {
-        ResetItemPos();//ÓÒ»÷Êó±êÖØÖÃ´óĞ¡
+        ResetItemPos();//å³å‡»é¼ æ ‡é‡ç½®å¤§å°
     }
 
 }
@@ -52,44 +52,44 @@ void ImageItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
 void ImageItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
 {
-    m_isMove = false;//±ê¼ÇÊó±ê×ó¼üÒÑ¾­Ì§Æğ
+    m_isMove = false;//æ ‡è®°é¼ æ ‡å·¦é”®å·²ç»æŠ¬èµ·
 }
 
 
-void ImageItem::wheelEvent(QGraphicsSceneWheelEvent *event)//Êó±ê¹öÂÖÊÂ¼ş
+void ImageItem::wheelEvent(QGraphicsSceneWheelEvent *event)//é¼ æ ‡æ»šè½®äº‹ä»¶
 {
-    if((event->delta() > 0)&&(m_scaleValue >= 50))//×î´ó·Å´óµ½Ô­Ê¼Í¼ÏñµÄ50±¶
+    if((event->delta() > 0)&&(m_scaleValue >= 50))//æœ€å¤§æ”¾å¤§åˆ°åŸå§‹å›¾åƒçš„50å€
     {
         return;
     }
-    else if((event->delta() < 0)&&(m_scaleValue <= m_scaleDafault))//Í¼ÏñËõĞ¡µ½×ÔÊÊÓ¦´óĞ¡Ö®ºó¾Í²»¼ÌĞøËõĞ¡
+    else if((event->delta() < 0)&&(m_scaleValue <= m_scaleDafault))//å›¾åƒç¼©å°åˆ°è‡ªé€‚åº”å¤§å°ä¹‹åå°±ä¸ç»§ç»­ç¼©å°
     {
-        ResetItemPos();//ÖØÖÃÍ¼Æ¬´óĞ¡ºÍÎ»ÖÃ£¬Ê¹Ö®×ÔÊÊÓ¦¿Ø¼ş´°¿Ú´óĞ¡
+        ResetItemPos();//é‡ç½®å›¾ç‰‡å¤§å°å’Œä½ç½®ï¼Œä½¿ä¹‹è‡ªé€‚åº”æ§ä»¶çª—å£å¤§å°
     }
     else
     {
         qreal qrealOriginScale = m_scaleValue;
-        if(event->delta() > 0)//Êó±ê¹öÂÖÏòÇ°¹ö¶¯
+        if(event->delta() > 0)//é¼ æ ‡æ»šè½®å‘å‰æ»šåŠ¨
         {
-            m_scaleValue*=1.1;//Ã¿´Î·Å´ó10%
+            m_scaleValue*=1.1;//æ¯æ¬¡æ”¾å¤§10%
         }
         else
         {
-            m_scaleValue*=0.9;//Ã¿´ÎËõĞ¡10%
+            m_scaleValue*=0.9;//æ¯æ¬¡ç¼©å°10%
         }
         setScale(m_scaleValue);
         if(event->delta() > 0)
         {
-            moveBy(-event->pos().x()*qrealOriginScale*0.1, -event->pos().y()*qrealOriginScale*0.1);//Ê¹Í¼Æ¬Ëõ·ÅµÄĞ§¹û¿´ÆğÀ´ÏñÊÇÒÔÊó±êËùÔÚµãÎªÖĞĞÄ½øĞĞËõ·ÅµÄ
+            moveBy(-event->pos().x()*qrealOriginScale*0.1, -event->pos().y()*qrealOriginScale*0.1);//ä½¿å›¾ç‰‡ç¼©æ”¾çš„æ•ˆæœçœ‹èµ·æ¥åƒæ˜¯ä»¥é¼ æ ‡æ‰€åœ¨ç‚¹ä¸ºä¸­å¿ƒè¿›è¡Œç¼©æ”¾çš„
         }
         else
         {
-            moveBy(event->pos().x()*qrealOriginScale*0.1, event->pos().y()*qrealOriginScale*0.1);//Ê¹Í¼Æ¬Ëõ·ÅµÄĞ§¹û¿´ÆğÀ´ÏñÊÇÒÔÊó±êËùÔÚµãÎªÖĞĞÄ½øĞĞËõ·ÅµÄ
+            moveBy(event->pos().x()*qrealOriginScale*0.1, event->pos().y()*qrealOriginScale*0.1);//ä½¿å›¾ç‰‡ç¼©æ”¾çš„æ•ˆæœçœ‹èµ·æ¥åƒæ˜¯ä»¥é¼ æ ‡æ‰€åœ¨ç‚¹ä¸ºä¸­å¿ƒè¿›è¡Œç¼©æ”¾çš„
         }
     }
 }
 
-void ImageItem::setQGraphicsViewWH(int nwidth, int nheight)//½«Ö÷½çÃæµÄ¿Ø¼şQGraphicsViewµÄwidthºÍheight´«½ø±¾ÀàÖĞ£¬²¢¸ù¾İÍ¼ÏñµÄ³¤¿íºÍ¿Ø¼şµÄ³¤¿íµÄ±ÈÀıÀ´Ê¹Í¼Æ¬Ëõ·Åµ½ÊÊºÏ¿Ø¼şµÄ´óĞ¡
+void ImageItem::setQGraphicsViewWH(int nwidth, int nheight)//å°†ä¸»ç•Œé¢çš„æ§ä»¶QGraphicsViewçš„widthå’Œheightä¼ è¿›æœ¬ç±»ä¸­ï¼Œå¹¶æ ¹æ®å›¾åƒçš„é•¿å®½å’Œæ§ä»¶çš„é•¿å®½çš„æ¯”ä¾‹æ¥ä½¿å›¾ç‰‡ç¼©æ”¾åˆ°é€‚åˆæ§ä»¶çš„å¤§å°
 {
     int nImgWidth = m_pix.width();
     int nImgHeight = m_pix.height();
@@ -107,10 +107,10 @@ void ImageItem::setQGraphicsViewWH(int nwidth, int nheight)//½«Ö÷½çÃæµÄ¿Ø¼şQGrap
     m_scaleValue = m_scaleDafault;
 }
 
-void ImageItem::ResetItemPos()//ÖØÖÃÍ¼Æ¬Î»ÖÃ
+void ImageItem::ResetItemPos()//é‡ç½®å›¾ç‰‡ä½ç½®
 {
-    m_scaleValue = m_scaleDafault;//Ëõ·Å±ÈÀı»Øµ½Ò»¿ªÊ¼µÄ×ÔÊÊÓ¦±ÈÀı
-    setScale(m_scaleDafault);//Ëõ·Åµ½Ò»¿ªÊ¼µÄ×ÔÊÊÓ¦´óĞ¡
+    m_scaleValue = m_scaleDafault;//ç¼©æ”¾æ¯”ä¾‹å›åˆ°ä¸€å¼€å§‹çš„è‡ªé€‚åº”æ¯”ä¾‹
+    setScale(m_scaleDafault);//ç¼©æ”¾åˆ°ä¸€å¼€å§‹çš„è‡ªé€‚åº”å¤§å°
     setPos(0,0);
 }
 

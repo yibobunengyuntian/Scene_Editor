@@ -8,21 +8,21 @@
 MultiComBox::MultiComBox(QWidget *parent)
     : QComboBox(parent)
 {
-    //Îª ComBox ÉèÖÃ±à¼­¿ò
+    //ä¸º ComBox è®¾ç½®ç¼–è¾‘æ¡†
     m_pLineEdit = new QLineEdit(this);
     m_pLineEdit->setReadOnly(true);
-    m_pLineEdit->setEnabled(false);//²»¿É±à¼­£¬²»ÄÜÑ¡ÖĞÎÄ±¾
+    m_pLineEdit->setEnabled(false);//ä¸å¯ç¼–è¾‘ï¼Œä¸èƒ½é€‰ä¸­æ–‡æœ¬
     this->setLineEdit(m_pLineEdit);
     m_pLineEdit->installEventFilter(this);
 //    m_pLineEdit->setContextMenuPolicy(Qt::NoContextMenu);
     setContextMenuPolicy(Qt::NoContextMenu);
 
-    //ÉèÖÃ ComBox ÏÂÀ­½çÃæ
+    //è®¾ç½® ComBox ä¸‹æ‹‰ç•Œé¢
     m_pListView = new QListView(this);
     m_pListView->installEventFilter(this);
     this->setView(m_pListView);
 
-    //ÉèÖÃ ComBox Êı¾İÄ£ĞÍ
+    //è®¾ç½® ComBox æ•°æ®æ¨¡å‹
     m_pItemModel = new QStandardItemModel(this);
     this->setModel(m_pItemModel);
 
@@ -42,9 +42,9 @@ void MultiComBox::setText(const QString &text)
 
 //*************************************************
 //Function:        AddItems
-//Description:     Ìí¼ÓÏÂÀ­²Ëµ¥ÄÚÈİ
-//Input:           menus£º²Ëµ¥ÄÚÈİÁĞ±í
-//Return:          ÈôÖĞÍ¾Ö´ĞĞÊ§°Ü£¬Ôò·µ»Øfalse£¬ÖĞ¶Ï²Ù×÷£»·ñÔò£¬·µ»ØÕæ£¬¼ÌĞøºóĞø²Ù×÷
+//Description:     æ·»åŠ ä¸‹æ‹‰èœå•å†…å®¹
+//Input:           menusï¼šèœå•å†…å®¹åˆ—è¡¨
+//Return:          è‹¥ä¸­é€”æ‰§è¡Œå¤±è´¥ï¼Œåˆ™è¿”å›falseï¼Œä¸­æ–­æ“ä½œï¼›å¦åˆ™ï¼Œè¿”å›çœŸï¼Œç»§ç»­åç»­æ“ä½œ
 //*************************************************
 void MultiComBox::AddItems(QList<MenuItem*> menus)
 {
@@ -94,7 +94,7 @@ QList<int> MultiComBox::GetItemsId()
 
 //*************************************************
 //Function:        hidePopup
-//Description:     ¸ù¾İÊó±êÏàÓ¦Î»ÖÃ£¬ÅĞ¶ÏÊÇ·ñÒş²ØÏÂÀ­²Ëµ¥
+//Description:     æ ¹æ®é¼ æ ‡ç›¸åº”ä½ç½®ï¼Œåˆ¤æ–­æ˜¯å¦éšè—ä¸‹æ‹‰èœå•
 //*************************************************
 void MultiComBox::hidePopup()
 {
@@ -135,7 +135,7 @@ bool MultiComBox::eventFilter(QObject *watched, QEvent *event)
 
 //*************************************************
 //Function:        UpdateText
-//Description:     ¸üĞÂlineeditÎÄ±¾
+//Description:     æ›´æ–°lineeditæ–‡æœ¬
 //*************************************************
 void MultiComBox::UpdateText()
 {

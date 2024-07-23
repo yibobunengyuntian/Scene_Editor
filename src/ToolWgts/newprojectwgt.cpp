@@ -5,7 +5,7 @@ NewProjectWgt::NewProjectWgt(QWidget *parent) :
 {
     setupUi(this);
 
-    setWindowFlags(Qt::FramelessWindowHint);//ÎŞ±ß¿ò
+    setWindowFlags(Qt::FramelessWindowHint);//æ— è¾¹æ¡†
     setWindowModality(Qt::ApplicationModal);
     setAttribute(Qt::WA_DeleteOnClose);
 
@@ -22,12 +22,12 @@ QString NewProjectWgt::getDirectory()
     return m_pLEdtDirectory->text().trimmed() + "/" + m_pLEdtName->text().trimmed();
 }
 
-// ÍË³ö°´Å¥´¦ÀíÊÂ¼ş
+// é€€å‡ºæŒ‰é’®å¤„ç†äº‹ä»¶
 void NewProjectWgt::quitEvent()
 {
     close();
 }
-// ×î´ó»¯×îĞ¡»¯´°¿Ú°´Å¥ÊÂ¼ş
+// æœ€å¤§åŒ–æœ€å°åŒ–çª—å£æŒ‰é’®äº‹ä»¶
 void NewProjectWgt::mid_maxEvent()
 {
     if(this->isMaximized())
@@ -38,29 +38,29 @@ void NewProjectWgt::mid_maxEvent()
         showMaximized();
     }
 }
-// ×îĞ¡»¯´°¿ÚÊÂ¼ş
+// æœ€å°åŒ–çª—å£äº‹ä»¶
 void NewProjectWgt::minEvent()
 {
 
      showMinimized();
 }
-// ¹ØÓÚ°´Å¥´¦ÀíÊÂ¼ş
+// å…³äºæŒ‰é’®å¤„ç†äº‹ä»¶
 void NewProjectWgt::aboutEvent()
 {
 
 }
-// ÅäÖÃÊÂ¼ş
+// é…ç½®äº‹ä»¶
 void NewProjectWgt::configEvent()
 {
 
 }
-// ¸öÈËĞÅÏ¢ÊÂ¼ş
+// ä¸ªäººä¿¡æ¯äº‹ä»¶
 void NewProjectWgt::personEvent()
 {
 
 }
 
-// ÍÏ¶¯´°¿Ú±êÌâ£¬ÒÆ¶¯´°¿Ú
+// æ‹–åŠ¨çª—å£æ ‡é¢˜ï¼Œç§»åŠ¨çª—å£
 void NewProjectWgt::moveWindowEvent(QPoint& pos)
 {
     if(this->isMaximized()) return;
@@ -76,8 +76,7 @@ void NewProjectWgt::onOK()
         QString directory = m_pLEdtDirectory->text().trimmed();
         QDir dir(directory);
         if(!dir.exists()){
-            m_pLabTips->setText("<font color=red>"+
-                                QStringLiteral("±£´æÂ·¾¶²»´æÔÚ£¬ÇëÑ¡ÔñÒÑÓĞÂ·¾¶»òÊÖ¶¯´´½¨ºóÔÙÑ¡Ôñ") + "</font>");
+            m_pLabTips->setText("<font color=red>ä¿å­˜è·¯å¾„ä¸å­˜åœ¨ï¼Œè¯·é€‰æ‹©å·²æœ‰è·¯å¾„æˆ–æ‰‹åŠ¨åˆ›å»ºåå†é€‰æ‹©</font>");
             m_pLEdtDirectory->clear();
             return;
         }
@@ -85,8 +84,7 @@ void NewProjectWgt::onOK()
         return;
     }
 
-    m_pLabTips->setText("<font color=red>"+
-                        QStringLiteral("ÏîÄ¿Ãû³ÆºÍ±£´æÂ·¾¶²»ÄÜÎª¿Õ") + "</font>");
+    m_pLabTips->setText("<font color=red>é¡¹ç›®åç§°å’Œä¿å­˜è·¯å¾„ä¸èƒ½ä¸ºç©º</font>");
 
 }
 
@@ -97,7 +95,7 @@ void NewProjectWgt::onBrowse()
         dir = "c:/";
     }
 
-    QString projectDir = QFileDialog::getExistingDirectory(nullptr,QStringLiteral("ÏîÄ¿Â·¾¶"),dir);
+    QString projectDir = QFileDialog::getExistingDirectory(nullptr,("é¡¹ç›®è·¯å¾„"),dir);
     if(projectDir.isEmpty()){
         return;
     }
@@ -112,7 +110,7 @@ void NewProjectWgt::onNameChanged(QString name)
     directory += "/" + name;
 
 //    if(ALOF_StaticFun::isDirectoryExsit(directory)){
-//        m_pLabTips->setText("<font color=red>"+ QStringLiteral("ÏîÄ¿ÒÑ´æÔÚ") + "</font>");
+//        m_pLabTips->setText("<font color=red>"+ ("é¡¹ç›®å·²å­˜åœ¨") + "</font>");
 //    }else{
         m_pLabTips->clear();
 //    }
@@ -122,8 +120,8 @@ void NewProjectWgt::initialize()
 {
     TiteBar *tite = new TiteBar(this);
     tite->hideMid_maxAndMin();
-    tite->setWindowTitle(QStringLiteral("ĞÂ½¨ÏîÄ¿"));
-    this->setWindowTitle(QStringLiteral("ĞÂ½¨ÏîÄ¿"));
+    tite->setWindowTitle(("æ–°å»ºé¡¹ç›®"));
+    this->setWindowTitle(("æ–°å»ºé¡¹ç›®"));
     lay_tite->addWidget(tite);
     connect(tite,SIGNAL(quitEvent()),this,SLOT(quitEvent()));
     connect(tite,SIGNAL(mid_maxEvent()),this,SLOT(mid_maxEvent()));

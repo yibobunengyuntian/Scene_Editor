@@ -3,7 +3,7 @@
 RenderWgt::RenderWgt(QWidget *parent) :
     QOpenGLWidget(parent)
 {
-    setAcceptDrops(true);  /* ÔÊÐíÍÏ·Å */
+    setAcceptDrops(true);  /* å…è®¸æ‹–æ”¾ */
     setFocusPolicy(Qt::ClickFocus);
     setFocusPolicy(Qt::StrongFocus);
     setFocus();
@@ -13,7 +13,7 @@ RenderWgt::RenderWgt(QWidget *parent) :
 
 void RenderWgt::initializeGL()
 {
-    // ´´½¨×ÅÉ«Æ÷³ÌÐò¶ÔÏó
+    // åˆ›å»ºç€è‰²å™¨ç¨‹åºå¯¹è±¡
     initializeOpenGLFunctions();
 
     initializeShader();
@@ -23,13 +23,13 @@ void RenderWgt::initializeGL()
 
     createDepthTexture();
 
-    //    ¿ªÆôÌÞ³ý²Ù×÷Ð§¹û
+    //    å¼€å¯å‰”é™¤æ“ä½œæ•ˆæžœ
     //    glEnable(GL_CULL_FACE);
-    //½ûÓÃ±³ÃæµÄµÄ¹âÕÕºÍÒõÓ°Ð§¹û,±ÜÃâ²»±ØÒªµÄ¼ÆËã
+    //ç¦ç”¨èƒŒé¢çš„çš„å…‰ç…§å’Œé˜´å½±æ•ˆæžœ,é¿å…ä¸å¿…è¦çš„è®¡ç®—
     glCullFace(GL_BACK);
 
     glEnable(GL_MULTISAMPLE);
-    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);  // ¿ÉÒÔ¸ù¾ÝÐèÒªÉèÖÃ²»Í¬µÄÌáÊ¾²ÎÊý
+    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);  // å¯ä»¥æ ¹æ®éœ€è¦è®¾ç½®ä¸åŒçš„æç¤ºå‚æ•°
 
     glEnable(GL_DEPTH_TEST);
     glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
@@ -39,7 +39,7 @@ void RenderWgt::initializeGL()
 
 void RenderWgt::resizeGL(int w, int h)
 {
-    glViewport(0,0,w,h);                //¶¨ÒåÊÓ¿ÚÇøÓò
+    glViewport(0,0,w,h);                //å®šä¹‰è§†å£åŒºåŸŸ
     m_projection.setToIdentity();
     m_projection.perspective(45.0f,width()/float(height()),CAM_NEAR,CAM_FAR);
     g_PropertyManager->camera()->setProjection(m_projection);
@@ -48,12 +48,12 @@ void RenderWgt::resizeGL(int w, int h)
 
 void RenderWgt::paintGL()
 {
-    glClearColor(m_backgroundColor.x(), m_backgroundColor.y(), m_backgroundColor.z(), m_backgroundColor.w());   // ±³¾°ÑÕÉ«
-    // ¿ªÆôÄ£°å²âÊÔ
+    glClearColor(m_backgroundColor.x(), m_backgroundColor.y(), m_backgroundColor.z(), m_backgroundColor.w());   // èƒŒæ™¯é¢œè‰²
+    // å¼€å¯æ¨¡æ¿æµ‹è¯•
     glEnable(GL_STENCIL_TEST);
-    // Ö¸¶¨ÈçºÎ¸üÐÂÄ£°å»º³åÇøµÄÖµ
+    // æŒ‡å®šå¦‚ä½•æ›´æ–°æ¨¡æ¿ç¼“å†²åŒºçš„å€¼
     glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
-    // ²»ÔÊÐíÏòÄ£°å»º³åÇøÐ´ÈëÖµ
+    // ä¸å…è®¸å‘æ¨¡æ¿ç¼“å†²åŒºå†™å…¥å€¼
     glStencilMask(0x00);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
@@ -130,7 +130,7 @@ void RenderWgt::mousePressEvent(QMouseEvent *pEvent)
                 return;
             }
             m_isMouseLeftDown = true;
-            setMouseTracking(true);                 //¿ªÆôÊó±ê×·×Ù
+            setMouseTracking(true);                 //å¼€å¯é¼ æ ‡è¿½è¸ª
             if(g_PropertyManager->manipulator() && g_PropertyManager->selectNode())
             {
                 m_isSelectManipulator = g_PropertyManager->manipulator()->mouseDetection(this->mapFromGlobal(QCursor::pos()), this->width(), this->height());
@@ -152,9 +152,9 @@ void RenderWgt::mousePressEvent(QMouseEvent *pEvent)
     {
         m_oldDir = g_PropertyManager->camera()->getDir();
         m_mouseRightDownPos = QCursor::pos();
-        setCursor(Qt::BlankCursor);             //Òþ²ØÊó±ê¹â±ê
-        //QCursor::setPos(geometry().center());   //½«Êó±êÒÆ¶¯´°¿ÚÖÐÑë
-        setMouseTracking(true);                 //¿ªÆôÊó±ê×·×Ù
+        setCursor(Qt::BlankCursor);             //éšè—é¼ æ ‡å…‰æ ‡
+        //QCursor::setPos(geometry().center());   //å°†é¼ æ ‡ç§»åŠ¨çª—å£ä¸­å¤®
+        setMouseTracking(true);                 //å¼€å¯é¼ æ ‡è¿½è¸ª
 
         m_isMouseLeftDown = false;
         m_isMouseRightDown = true;
@@ -224,7 +224,7 @@ void RenderWgt::mouseReleaseEvent(QMouseEvent *pEvent)
     case Qt::RightButton:
     {
         QCursor::setPos(m_mouseRightDownPos);
-        setCursor(cursor);   //»Ö¸´Êó±ê¹â±ê
+        setCursor(cursor);   //æ¢å¤é¼ æ ‡å…‰æ ‡
         m_isMouseRightDown = false;
     }
     break;
@@ -273,9 +273,9 @@ void RenderWgt::mouseDoubleClickEvent(QMouseEvent *pEvent)
         }
         m_oldDir = g_PropertyManager->camera()->getDir();
         m_mouseRightDownPos = QCursor::pos();
-        setCursor(Qt::BlankCursor);             //Òþ²ØÊó±ê¹â±ê
-        //QCursor::setPos(geometry().center());   //½«Êó±êÒÆ¶¯´°¿ÚÖÐÑë
-        setMouseTracking(true);                 //¿ªÆôÊó±ê×·×Ù
+        setCursor(Qt::BlankCursor);             //éšè—é¼ æ ‡å…‰æ ‡
+        //QCursor::setPos(geometry().center());   //å°†é¼ æ ‡ç§»åŠ¨çª—å£ä¸­å¤®
+        setMouseTracking(true);                 //å¼€å¯é¼ æ ‡è¿½è¸ª
 
         m_isMouseLeftDown = false;
         m_isMouseRightDown = true;
@@ -626,7 +626,7 @@ void RenderWgt::initialize()
     m_pTip->raise();
     m_pTip->move(10, 30);
     m_pTip->hide();
-    //´´½¨ÏÔÊ¾½ø¶ÈµÄÈÎÎñÀ¸°´Å¥
+    //åˆ›å»ºæ˜¾ç¤ºè¿›åº¦çš„ä»»åŠ¡æ æŒ‰é’®
     connect(m_pCameraTool,&CameraTool::dataChange,[=](float speed, QVector3D pos){
         g_PropertyManager->camera()->setMoveSpeed(speed);
         g_PropertyManager->camera()->setCameraPos(pos);
@@ -656,7 +656,7 @@ void RenderWgt::initialize()
     timer.start();
     m_pViewCube->setModelMat(g_PropertyManager->camera()->getDir(), g_PropertyManager->camera()->getUp());
 
-//    QSurfaceFormat newGLFormat = this->format();  //¿ªÆô¿¹¾â³Ý(¿ªÆôºó¶þÎ¬×ªÈýÎ¬×ø±êÎÊÌâÎ´½â¾ö)
+//    QSurfaceFormat newGLFormat = this->format();  //å¼€å¯æŠ—é”¯é½¿(å¼€å¯åŽäºŒç»´è½¬ä¸‰ç»´åæ ‡é—®é¢˜æœªè§£å†³)
 //    newGLFormat.setSamples(4);
     //    this->setFormat(newGLFormat);
 }
@@ -732,11 +732,11 @@ void RenderWgt::loadWorld()
         g_PropertyManager->addNode(node);
         g_PropertyManager->m_tmpNodes.removeOne(node);
         int num = g_PropertyManager->nodes().size() * 100/(g_PropertyManager->m_tmpNodes.size() + g_PropertyManager->nodes().size());
-        g_PropertyManager->loadWgt()->onSetTip(QString(QStringLiteral("¼´½«¼ÓÔØÍê³É %1 %")).arg(num));
+        g_PropertyManager->loadWgt()->onSetTip(QString(("å³å°†åŠ è½½å®Œæˆ %1 %")).arg(num));
         emit g_PropertyManager->setTaskbarProgressValue(60 + num*0.4);
         if(g_PropertyManager->m_tmpNodes.size() == 0)
         {
-            g_PropertyManager->loadWgt()->onSetTip(QStringLiteral("¼ÓÔØÍê³É!"));
+            g_PropertyManager->loadWgt()->onSetTip(("åŠ è½½å®Œæˆ!"));
             g_PropertyManager->m_isLoadWorld = false;
             g_PropertyManager->m_tmpNodes.clear();
             g_PropertyManager->loadWgt()->hide();
@@ -816,7 +816,7 @@ void RenderWgt::renderDepthMap()
                 node->Draw(m_DepthMapShaderProgram, true);
             }
             // g_PropertyManager->floor()->Draw(m_DepthMapShaderProgram, true);
-            // glCullFace(GL_BACK); // ²»ÒªÍü¼ÇÉè»ØÔ­ÏÈµÄculling face
+            // glCullFace(GL_BACK); // ä¸è¦å¿˜è®°è®¾å›žåŽŸå…ˆçš„culling face
             // glDisable(GL_CULL_FACE);
             glBindFramebuffer(GL_FRAMEBUFFER, defaultFramebufferObject());
             m_DepthMapShaderProgram.release();
@@ -876,15 +876,15 @@ QVector4D RenderWgt::worldPosFromViewPort(int posX, int posY)
         ,GL_DEPTH_COMPONENT,GL_FLOAT
         ,&winZ);
     doneCurrent();
-    float x=(2.0f*posX)/this->width()-1.0f; //×ª»¯Îª±ê×¼Éè±¸×ø±ê(-1,1)
-    float y=1.0f-(2.0f*posY)/this->height();//×ª»¯Îª±ê×¼Éè±¸×ø±ê(-1,1)
-    float z=winZ*2.0f-1.0f;//×ª»¯Îª±ê×¼Éè±¸×ø±ê(-1,1)
+    float x=(2.0f*posX)/this->width()-1.0f; //è½¬åŒ–ä¸ºæ ‡å‡†è®¾å¤‡åæ ‡(-1,1)
+    float y=1.0f-(2.0f*posY)/this->height();//è½¬åŒ–ä¸ºæ ‡å‡†è®¾å¤‡åæ ‡(-1,1)
+    float z=winZ*2.0f-1.0f;//è½¬åŒ–ä¸ºæ ‡å‡†è®¾å¤‡åæ ‡(-1,1)
 
-    float w = (2.0f * CAM_NEAR * CAM_FAR) / (CAM_FAR + CAM_NEAR - z * (CAM_FAR - CAM_NEAR));//¼ÆËãÆë´Î×ø±ê
+    float w = (2.0f * CAM_NEAR * CAM_FAR) / (CAM_FAR + CAM_NEAR - z * (CAM_FAR - CAM_NEAR));//è®¡ç®—é½æ¬¡åæ ‡
     //float w= _near*_far/(_near*winZ-_far*winZ+_far);
     QVector4D wolrdPostion(x,y,z,1);
-    wolrdPostion=w*wolrdPostion;//²Ã¼ô¿Õ¼äµÄ×ø±ê
-    return g_PropertyManager->camera()->getView().inverted()*m_projection.inverted()*wolrdPostion; //»ñµÃÊÀ½ç¿Õ¼äµÄ×ø±ê
+    wolrdPostion=w*wolrdPostion;//è£å‰ªç©ºé—´çš„åæ ‡
+    return g_PropertyManager->camera()->getView().inverted()*m_projection.inverted()*wolrdPostion; //èŽ·å¾—ä¸–ç•Œç©ºé—´çš„åæ ‡
 }
 
 void RenderWgt::setBackgroundColor(GLfloat r, GLfloat g, GLfloat b, GLfloat a)
@@ -894,15 +894,15 @@ void RenderWgt::setBackgroundColor(GLfloat r, GLfloat g, GLfloat b, GLfloat a)
 
 void RenderWgt::addModelByFile()
 {
-    m_modelPath = QFileDialog::getOpenFileName(this, QStringLiteral("µ¼ÈëÄ£ÐÍ"),
-                                               g_PropertyManager->config()->Get("path", "model").toString(),
+    m_modelPath = QFileDialog::getOpenFileName(this, ("å¯¼å…¥æ¨¡åž‹"),
+                                               g_Config->Get("path", "model").toString(),
                                                tr("Model Files (%1)").arg(MODEL_FILE_TYPE));
     if(m_modelPath.isEmpty())
     {
         return;
     }
     g_PropertyManager->setEnabledSignal(false);
-    m_pTip->setText(QStringLiteral("Ä£ÐÍ¼ÓÔØÖÐ..."));
+    m_pTip->setText(("æ¨¡åž‹åŠ è½½ä¸­..."));
     m_pTip->show();
     QFutureWatcher<void> *pWatcher = new QFutureWatcher<void>;
     QFuture<void> future = QtConcurrent::run([=]()
@@ -919,5 +919,5 @@ void RenderWgt::addModelByFile()
     pWatcher->setFuture(future);
     QString dir = m_modelPath;
     dir.chop(dir.split("/").last().count());
-    g_PropertyManager->config()->Set("path", "model", dir);
+    g_Config->Set("path", "model", dir);
 }

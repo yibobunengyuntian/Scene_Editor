@@ -44,14 +44,14 @@ void TiteBar::onMinWgt()
 
 void TiteBar::initialize()
 {
-    setWindowFlags(Qt::FramelessWindowHint);//ÎÞ±ß¿ò
+    setWindowFlags(Qt::FramelessWindowHint);//æ— è¾¹æ¡†
     vBox->setSpacing(3);
     m_pTiteIcon = new QLabel(this);
     vBox->addWidget(m_pTiteIcon);
     m_pTiteText = new QLabel(this);
-    m_pTiteText->setAlignment(Qt::AlignCenter);           //ÉèÖÃ×ÖÌå¾ÓÖÐÏÔÊ¾
-    // QFont font = QFont("ËÎÌå", 12);
-    // m_pTiteText->setFont(font);                           //ÉèÖÃ×ÖÌå
+    m_pTiteText->setAlignment(Qt::AlignCenter);           //è®¾ç½®å­—ä½“å±…ä¸­æ˜¾ç¤º
+    // QFont font = QFont("å®‹ä½“", 12);
+    // m_pTiteText->setFont(font);                           //è®¾ç½®å­—ä½“
    // m_pTiteText->setText("openGL_test");
     vBox->addWidget(m_pTiteText);
     vBox->addStretch();

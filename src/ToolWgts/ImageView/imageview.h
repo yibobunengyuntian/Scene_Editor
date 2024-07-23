@@ -13,7 +13,7 @@ public:
     ~ImageView();
 
 public slots:
-    void recvShowPic(QImage image);//接收并显示图片的函数
+    void recvShowPic(QImage image);//鎺ユ敹骞舵樉绀哄浘鐗囩殑鍑芥暟
 
 private:
     ImageItem *m_pImage = nullptr;

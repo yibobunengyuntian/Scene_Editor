@@ -7,7 +7,7 @@
 
 void logout(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
-    // ¼ÓËø
+    // åŠ é”
     static QMutex mutex;
     mutex.lock();
 
@@ -36,12 +36,12 @@ void logout(QtMsgType type, const QMessageLogContext &context, const QString &ms
         break;
     }
 
-    // ÉèÖÃÊä³öÐÅÏ¢¸ñÊ½
+    // è®¾ç½®è¾“å‡ºä¿¡æ¯æ ¼å¼
     QString strDateTime = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss ddd");
     QString strMessage = QString("Message:%1 %2 File:%3  Line:%4  Function:%5  DateTime:%6")
             .arg(strMsg).arg(msg).arg(context.file).arg(context.line).arg(context.function).arg(strDateTime);
 
-    // Êä³öÐÅÏ¢ÖÁÎÄ¼þÖÐ£¨¶ÁÐ´¡¢×·¼ÓÐÎÊ½£©
+    // è¾“å‡ºä¿¡æ¯è‡³æ–‡ä»¶ä¸­ï¼ˆè¯»å†™ã€è¿½åŠ å½¢å¼ï¼‰
     QFile file(qApp->applicationDirPath() +"/log.txt");
     file.open(QIODevice::ReadWrite | QIODevice::Append);
     QTextStream stream(&file);
@@ -49,13 +49,13 @@ void logout(QtMsgType type, const QMessageLogContext &context, const QString &ms
     file.flush();
     file.close();
 
-    // ½âËø
+    // è§£é”
     mutex.unlock();
 }
 
 int main(int argc, char *argv[])
 {
-//    qInstallMessageHandler(logout);   //½«µ÷ÊÔÐÅÏ¢Êä³öµ½ÎÄ¼þ
+//    qInstallMessageHandler(logout);   //å°†è°ƒè¯•ä¿¡æ¯è¾“å‡ºåˆ°æ–‡ä»¶
     QGuiApplication::setAttribute(Qt::AA_UseDesktopOpenGL);
     QCoreApplication::setAttribute(Qt::AA_UseDesktopOpenGL);
     QApplication::setAttribute(Qt::AA_UseDesktopOpenGL);
@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
 //        splash->show();
 //        splash->setCursor(Qt::BlankCursor);
 //        for (int i = 0; i < 3000; i += mv.speed()) {
-//            a.processEvents(); //·ÀÖ¹½çÃæ³öÏÖÎÞÏìÓ¦
+//            a.processEvents(); //é˜²æ­¢ç•Œé¢å‡ºçŽ°æ— å“åº”
 ////            qDebug() << QString::number(mv.speed());
 //            QThread::msleep(mv.speed());
 //        }

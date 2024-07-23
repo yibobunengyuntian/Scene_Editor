@@ -8,8 +8,8 @@ ViewCube::ViewCube(QWidget *parent) :
 {
     setupUi(this);
     //move(300, 0);
-    setWindowFlags(Qt::FramelessWindowHint);//ÎŞ´°Ìå
-    setAttribute(Qt::WA_TranslucentBackground);//±³¾°Í¸Ã÷
+    setWindowFlags(Qt::FramelessWindowHint);//æ— çª—ä½“
+    setAttribute(Qt::WA_TranslucentBackground);//èƒŒæ™¯é€æ˜
     //this->setClearMask(GL_DEPTH_BUFFER_BIT);
     setAttribute(Qt::WA_AlwaysStackOnTop);
     vertices = {
@@ -56,7 +56,7 @@ ViewCube::ViewCube(QWidget *parent) :
         -0.5f,  0.5f, -0.5f,  0.25f, 1.0f
     };
 
-    QSurfaceFormat newGLFormat = this->format();  //¿ªÆô¿¹¾â³İ
+    QSurfaceFormat newGLFormat = this->format();  //å¼€å¯æŠ—é”¯é½¿
     newGLFormat.setSamples(4);
     setFormat(newGLFormat);
 }
@@ -71,27 +71,27 @@ void ViewCube::setModelMat(QVector3D dir, QVector3D up)
 
 void ViewCube::initializeGL()
 {
-    initializeOpenGLFunctions();        //³õÊ¼»¯openglº¯Êı
+    initializeOpenGLFunctions();        //åˆå§‹åŒ–openglå‡½æ•°
     if(m_pShaderProgram == nullptr)
     {
         m_pShaderProgram = new QOpenGLShaderProgram();
     }
-    if(!m_pShaderProgram->addShaderFromSourceFile(QOpenGLShader::Vertex,":/res/shader/view_cube.vert")){     //Ìí¼Ó²¢±àÒë¶¥µã×ÅÉ«Æ÷
-        qDebug()<<"ERROR:"<<m_pShaderProgram->log();    //Èç¹û±àÒë³ö´í,´òÓ¡±¨´íĞÅÏ¢
+    if(!m_pShaderProgram->addShaderFromSourceFile(QOpenGLShader::Vertex,":/res/shader/view_cube.vert")){     //æ·»åŠ å¹¶ç¼–è¯‘é¡¶ç‚¹ç€è‰²å™¨
+        qDebug()<<"ERROR:"<<m_pShaderProgram->log();    //å¦‚æœç¼–è¯‘å‡ºé”™,æ‰“å°æŠ¥é”™ä¿¡æ¯
     }
-    if(!m_pShaderProgram->addShaderFromSourceFile(QOpenGLShader::Fragment,":/res/shader/view_cube.frag")){   //Ìí¼Ó²¢±àÒëÆ¬¶Î×ÅÉ«Æ÷
-        qDebug()<<"ERROR:"<<m_pShaderProgram->log();    //Èç¹û±àÒë³ö´í,´òÓ¡±¨´íĞÅÏ¢
+    if(!m_pShaderProgram->addShaderFromSourceFile(QOpenGLShader::Fragment,":/res/shader/view_cube.frag")){   //æ·»åŠ å¹¶ç¼–è¯‘ç‰‡æ®µç€è‰²å™¨
+        qDebug()<<"ERROR:"<<m_pShaderProgram->log();    //å¦‚æœç¼–è¯‘å‡ºé”™,æ‰“å°æŠ¥é”™ä¿¡æ¯
     }
-    if(!m_pShaderProgram->link()){                      //Á´½Ó×ÅÉ«Æ÷
-        qDebug()<<"ERROR:"<<m_pShaderProgram->log();    //Èç¹ûÁ´½Ó³ö´í,´òÓ¡±¨´íĞÅÏ¢
+    if(!m_pShaderProgram->link()){                      //é“¾æ¥ç€è‰²å™¨
+        qDebug()<<"ERROR:"<<m_pShaderProgram->log();    //å¦‚æœé“¾æ¥å‡ºé”™,æ‰“å°æŠ¥é”™ä¿¡æ¯
     }
 
     QOpenGLVertexArrayObject::Binder{&m_VAO};
 
-    m_VBO.create();       //Éú³ÉVBO¶ÔÏó
-    m_VBO.bind();         //½«VBO°ó¶¨µ½µ±Ç°µÄ¶¥µã»º³å¶ÔÏó£¨QOpenGLBuffer::VertexBuffer£©ÖĞ
+    m_VBO.create();       //ç”ŸæˆVBOå¯¹è±¡
+    m_VBO.bind();         //å°†VBOç»‘å®šåˆ°å½“å‰çš„é¡¶ç‚¹ç¼“å†²å¯¹è±¡ï¼ˆQOpenGLBuffer::VertexBufferï¼‰ä¸­
 
-    //½«¶¥µãÊı¾İ·ÖÅäµ½VBOÖĞ£¬µÚÒ»¸ö²ÎÊıÎªÊı¾İÖ¸Õë£¬µÚ¶ş¸ö²ÎÊıÎªÊı¾İµÄ×Ö½Ú³¤¶È
+    //å°†é¡¶ç‚¹æ•°æ®åˆ†é…åˆ°VBOä¸­ï¼Œç¬¬ä¸€ä¸ªå‚æ•°ä¸ºæ•°æ®æŒ‡é’ˆï¼Œç¬¬äºŒä¸ªå‚æ•°ä¸ºæ•°æ®çš„å­—èŠ‚é•¿åº¦
     m_VBO.allocate(vertices.data(),int(sizeof(float))*vertices.size());
 
     texture.create();
@@ -101,7 +101,7 @@ void ViewCube::initializeGL()
     texture.setWrapMode(QOpenGLTexture::DirectionT,QOpenGLTexture::Repeat);
 
 
-    //ÉèÖÃ¶¥µã½âÎö¸ñÊ½£¬²¢ÆôÓÃ¶¥µã
+    //è®¾ç½®é¡¶ç‚¹è§£ææ ¼å¼ï¼Œå¹¶å¯ç”¨é¡¶ç‚¹
     m_pShaderProgram->setAttributeBuffer("aPos", GL_FLOAT, 0, 3, sizeof(GLfloat) * 5);
     m_pShaderProgram->enableAttributeArray("aPos");
     m_pShaderProgram->setAttributeBuffer("aTexCoord", GL_FLOAT,sizeof(GLfloat) * 3, 2, sizeof(GLfloat) * 5);
@@ -122,14 +122,14 @@ void ViewCube::initializeGL()
 
 void ViewCube::resizeGL(int w, int h)
 {
-    glViewport(0,0,w,h);                //¶¨ÒåÊÓ¿ÚÇøÓò
+    glViewport(0,0,w,h);                //å®šä¹‰è§†å£åŒºåŸŸ
 }
 
 void ViewCube::paintGL()
 {
-//    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);       //Çå³ıÑÕÉ«»º´æ
+//    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);       //æ¸…é™¤é¢œè‰²ç¼“å­˜
 
-    m_pShaderProgram->bind();                     //Ê¹ÓÃshaderProgram×ÅÉ«³ÌĞò
+    m_pShaderProgram->bind();                     //ä½¿ç”¨shaderProgramç€è‰²ç¨‹åº
     {
         //float time=QTime::currentTime().msecsSinceStartOfDay()/1000.0;
 
@@ -144,11 +144,11 @@ void ViewCube::paintGL()
         projection.perspective(45.0f,width()/float(height()),0.1f,100.0f);
         m_pShaderProgram->setUniformValue("projection",projection);
 
-        texture.bind(0);                                    //½«texture°ó¶¨µ½ÎÆÀíµ¥Ôª0
-        m_pShaderProgram->setUniformValue("ourTexture",0);      //ÈÃourTexture´ÓÎÆÀíµ¥Ôª0ÖĞ»ñÈ¡ÎÆÀíÊı¾İ
+        texture.bind(0);                                    //å°†textureç»‘å®šåˆ°çº¹ç†å•å…ƒ0
+        m_pShaderProgram->setUniformValue("ourTexture",0);      //è®©ourTextureä»çº¹ç†å•å…ƒ0ä¸­è·å–çº¹ç†æ•°æ®
 
         QOpenGLVertexArrayObject::Binder{&m_VAO};
-        glDrawArrays(GL_TRIANGLES, 0, 36);     //Ê¹ÓÃÒÔ0¿ªÊ¼£¬³¤¶ÈÎª36µÄ¶¥µãÊı¾İÀ´»æÖÆÈı½ÇĞÎ
+        glDrawArrays(GL_TRIANGLES, 0, 36);     //ä½¿ç”¨ä»¥0å¼€å§‹ï¼Œé•¿åº¦ä¸º36çš„é¡¶ç‚¹æ•°æ®æ¥ç»˜åˆ¶ä¸‰è§’å½¢
     }
     m_pShaderProgram->release();
 }

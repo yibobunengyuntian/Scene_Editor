@@ -3,7 +3,7 @@
 LineEdit::LineEdit(QWidget *parent)
     :QLineEdit(parent)
 {
-    setAcceptDrops(true);  /* ÔÊĞíÍÏ·Å */
+    setAcceptDrops(true);  /* å…è®¸æ‹–æ”¾ */
     setFocusPolicy(Qt::ClickFocus);
     setFocusPolicy(Qt::StrongFocus);
 }

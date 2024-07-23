@@ -5,8 +5,8 @@ MainWgt::MainWgt(QWidget *parent) :
     QWidget(parent)
 {
     setupUi(this);
-    // ÉèÖÃÎŞ±ß¿ò
-    setWindowFlags(Qt::FramelessWindowHint);//ÎŞ±ß¿ò
+    // è®¾ç½®æ— è¾¹æ¡†
+    setWindowFlags(Qt::FramelessWindowHint);//æ— è¾¹æ¡†
 
     initWidget();
 }
@@ -28,21 +28,21 @@ void MainWgt::setTaskbarProgressValue(int value)
     m_pWindowsTaskbarProgress->setValue(value);
     m_pWindowsTaskbarProgress->show();
 }
-// ÍË³ö°´Å¥´¦ÀíÊÂ¼ş
+// é€€å‡ºæŒ‰é’®å¤„ç†äº‹ä»¶
 void MainWgt::quitEvent()
 {
     if(g_PropertyManager->isNeedSave())
     {
-        if(QMessageBox::question(this, QStringLiteral("ÌáÊ¾"),
-                                 QStringLiteral("µ±Ç°ÏîÄ¿Î´±£´æ, "
-                                    "ÊÇ·ñ±£´æ?")) == QMessageBox::Yes)
+        if(QMessageBox::question(this, ("æç¤º"),
+                                 ("å½“å‰é¡¹ç›®æœªä¿å­˜, "
+                                    "æ˜¯å¦ä¿å­˜?")) == QMessageBox::Yes)
         {
             g_PropertyManager->saveWorld();
         }
     }
     qApp->quit();
 }
-// ×î´ó»¯×îĞ¡»¯´°¿Ú°´Å¥ÊÂ¼ş
+// æœ€å¤§åŒ–æœ€å°åŒ–çª—å£æŒ‰é’®äº‹ä»¶
 void MainWgt::mid_maxEvent()
 {
     bool is = !this->isMaximized();
@@ -62,29 +62,29 @@ void MainWgt::mid_maxEvent()
         showMaximized();
     }
 }
-// ×îĞ¡»¯´°¿ÚÊÂ¼ş
+// æœ€å°åŒ–çª—å£äº‹ä»¶
 void MainWgt::minEvent()
 {
 
      showMinimized();
 }
-// ¹ØÓÚ°´Å¥´¦ÀíÊÂ¼ş
+// å…³äºæŒ‰é’®å¤„ç†äº‹ä»¶
 void MainWgt::aboutEvent()
 {
 
 }
-// ÅäÖÃÊÂ¼ş
+// é…ç½®äº‹ä»¶
 void MainWgt::configEvent()
 {
 
 }
-// ¸öÈËĞÅÏ¢ÊÂ¼ş
+// ä¸ªäººä¿¡æ¯äº‹ä»¶
 void MainWgt::personEvent()
 {
 
 }
 
-// ÍÏ¶¯´°¿Ú±êÌâ£¬ÒÆ¶¯´°¿Ú
+// æ‹–åŠ¨çª—å£æ ‡é¢˜ï¼Œç§»åŠ¨çª—å£
 void MainWgt::moveWindowEvent(QPoint& pos)
 {
     if(this->isMaximized()) return;
@@ -124,15 +124,15 @@ void MainWgt::onOPen()
 {
     if(g_PropertyManager->isNeedSave())
     {
-        if(QMessageBox::question(this, QStringLiteral("ÌáÊ¾"),
-                                 QStringLiteral("µ±Ç°ÏîÄ¿Î´±£´æ, "
-                                    "ÊÇ·ñ±£´æ?")) == QMessageBox::Yes)
+        if(QMessageBox::question(this, ("æç¤º"),
+                                 ("å½“å‰é¡¹ç›®æœªä¿å­˜, "
+                                    "æ˜¯å¦ä¿å­˜?")) == QMessageBox::Yes)
         {
             g_PropertyManager->saveWorld();
         }
     }
-    QString proDir = QFileDialog::getOpenFileName(this, QStringLiteral("¼ÓÔØ³¡¾°"),
-                                                  g_PropertyManager->config()->Get("path", "world").toString(),
+    QString proDir = QFileDialog::getOpenFileName(this, ("åŠ è½½åœºæ™¯"),
+                                                  g_Config->Get("path", "world").toString(),
                                                   "world file (*.world)");
     if(proDir.isEmpty())
     {
@@ -140,7 +140,7 @@ void MainWgt::onOPen()
     }
     QString dir = proDir;
     dir.chop(dir.split("/").last().count());
-    g_PropertyManager->config()->Set("path", "world", dir);
+    g_Config->Set("path", "world", dir);
     g_PropertyManager->openWorld(proDir);
 }
 
@@ -175,9 +175,9 @@ void MainWgt::initWidget()
     H_splitter->setStretchFactor(0,1);
     H_splitter->setCollapsible(0, false);
     m_pTiteBar = new TiteBar();
-    m_pTiteBar->setWindowTitle(QStringLiteral("Scene_Editor"));
+    m_pTiteBar->setWindowTitle(("Scene_Editor"));
     m_pTiteBar->setIcon(":/res/icon/tite.png");
-    this->setWindowTitle(QStringLiteral("Scene_Editor"));
+    this->setWindowTitle(("Scene_Editor"));
     tite->addWidget(m_pTiteBar);
 
     pToolBar = new QToolBar;
@@ -203,15 +203,15 @@ void MainWgt::initWidget()
                             }\
 " + m_styleSheet);
     QAction *pOpen = pToolBar->addAction(QIcon(":/res/icon/open.png"),"");
-    pOpen->setToolTip(QStringLiteral("´ò¿ª³¡¾°"));
+    pOpen->setToolTip(("æ‰“å¼€åœºæ™¯"));
 //    QAction *pNew = pToolBar->addAction(QIcon(":/res/icon/add.png"),"");
-//    pNew->setToolTip(QStringLiteral("ĞÂ½¨³¡¾°"));
+//    pNew->setToolTip(("æ–°å»ºåœºæ™¯"));
     //    pNew->setShortcut(QKeySequence("Ctrl+N"));
     QAction *pSave = pToolBar->addAction(QIcon(":/res/icon/save.png"),"");
-    pSave->setToolTip(QStringLiteral("±£´æ³¡¾°"));
+    pSave->setToolTip(("ä¿å­˜åœºæ™¯"));
     pSave->setShortcut(QKeySequence("Ctrl+S"));
     QAction *pAddModel = pToolBar->addAction(QIcon(":/res/icon/addmodel.png"),"");
-    pAddModel->setToolTip(QStringLiteral("Ìí¼ÓÄ£ĞÍ"));
+    pAddModel->setToolTip(("æ·»åŠ æ¨¡å‹"));
 
     pToolBar->addSeparator();
     QComboBox *manipulator_type = new QComboBox();
@@ -224,10 +224,10 @@ void MainWgt::initWidget()
                                     min-width:35px;\
                                     min-height:20px;\
 ");
-    manipulator_type->addItem(QStringLiteral("Æ½ÒÆ"));
-    manipulator_type->addItem(QStringLiteral("Ğı×ª"));
-    manipulator_type->addItem(QStringLiteral("Ëõ·Å"));
-    manipulator_type->setToolTip(QStringLiteral("Ä£ĞÍ²Ù×÷"));
+    manipulator_type->addItem(("å¹³ç§»"));
+    manipulator_type->addItem(("æ—‹è½¬"));
+    manipulator_type->addItem(("ç¼©æ”¾"));
+    manipulator_type->setToolTip(("æ¨¡å‹æ“ä½œ"));
     pToolBar->addWidget(manipulator_type);
 
     QComboBox *manipulatorReferenceSystem = new QComboBox();
@@ -240,36 +240,36 @@ void MainWgt::initWidget()
                                     min-width:35px;\
                                     min-height:20px;\
 ");
-    manipulatorReferenceSystem->addItem(QStringLiteral("±¾µØ"));
-    manipulatorReferenceSystem->addItem(QStringLiteral("ÊÀ½ç"));
-    //manipulatorReferenceSystem->addItem(QStringLiteral("¸¸½Úµã"));
-    manipulatorReferenceSystem->setToolTip(QStringLiteral("Ä£ĞÍ²Ù×÷²Î¿¼Ïµ"));
+    manipulatorReferenceSystem->addItem(("æœ¬åœ°"));
+    manipulatorReferenceSystem->addItem(("ä¸–ç•Œ"));
+    //manipulatorReferenceSystem->addItem(("çˆ¶èŠ‚ç‚¹"));
+    manipulatorReferenceSystem->setToolTip(("æ¨¡å‹æ“ä½œå‚è€ƒç³»"));
     pToolBar->addWidget(manipulatorReferenceSystem);
 
     QAction *pUndo = pToolBar->addAction(QIcon(":/res/icon/undo.png"),"");
-    pUndo->setToolTip(QStringLiteral("³·Ïú"));
+    pUndo->setToolTip(("æ’¤é”€"));
     QAction *pRedo = pToolBar->addAction(QIcon(":/res/icon/redo.png"),"");
-    pRedo->setToolTip(QStringLiteral("»Ö¸´"));
+    pRedo->setToolTip(("æ¢å¤"));
     pUndo->setEnabled(false);
     pRedo->setEnabled(false);
 
     pToolBar->addSeparator();
     QAction *pIsMesh = pToolBar->addAction(QIcon(":/res/icon/mesh.png"),"");
-    pIsMesh->setToolTip(QStringLiteral("Íø¸ñÏÔÊ¾"));
+    pIsMesh->setToolTip(("ç½‘æ ¼æ˜¾ç¤º"));
     pIsMesh->setCheckable(true);
     pIsMesh->setChecked(false);
     pToolBar->widgetForAction(pIsMesh)->setStyleSheet(g_CHECKTOOLSTYLE);
 
     QList<MenuItem*> listMenuitem;
 
-    MenuItem *pMenuitemAABB = new MenuItem(0,QStringLiteral("°üÎ§ºĞ"),g_PropertyManager->nodeSelectState().value(SHOWAABB).toBool());
+    MenuItem *pMenuitemAABB = new MenuItem(0,"åŒ…å›´ç›’",g_PropertyManager->nodeSelectState().value(SHOWAABB).toBool());
     listMenuitem.append(pMenuitemAABB);
-    MenuItem *pMenuitemMesh = new MenuItem(1,QStringLiteral("Íø¸ñ"),g_PropertyManager->nodeSelectState().value(SHOWMESH).toBool());
+    MenuItem *pMenuitemMesh = new MenuItem(1,"ç½‘æ ¼",g_PropertyManager->nodeSelectState().value(SHOWMESH).toBool());
     listMenuitem.append(pMenuitemMesh);
-    MenuItem *pMenuitemOutline = new MenuItem(2,QStringLiteral("ÂÖÀª"),g_PropertyManager->nodeSelectState().value(SHOWOUTLINE).toBool());
+    MenuItem *pMenuitemOutline = new MenuItem(2,"è½®å»“",g_PropertyManager->nodeSelectState().value(SHOWOUTLINE).toBool());
     listMenuitem.append(pMenuitemOutline);
     MultiComBox *pMenuItem = new MultiComBox;
-    pMenuItem->setText(QStringLiteral("Ñ¡ÖĞ±íÏÖ"));
+    pMenuItem->setText(("é€‰ä¸­è¡¨ç°"));
     pMenuItem->AddItems(listMenuitem);
     pMenuItem->setStyleSheet("color: rgb(255, 255, 255);\
                                     background-color: rgb(118, 118, 118);\
@@ -283,7 +283,7 @@ void MainWgt::initWidget()
     pToolBar->addWidget(pMenuItem);
 
     QAction *pIsShadow = pToolBar->addAction(QIcon(":/res/icon/shadow.png"),"");
-    pIsShadow->setToolTip(QStringLiteral("ÒõÓ°(¿ªÆôÒõÓ°½«ËğÊ§½Ï´óĞÔÄÜ)"));
+    pIsShadow->setToolTip(("é˜´å½±(å¼€å¯é˜´å½±å°†æŸå¤±è¾ƒå¤§æ€§èƒ½)"));
     pIsShadow->setCheckable(true);
     pIsShadow->setChecked(false);
     pToolBar->widgetForAction(pIsShadow)->setStyleSheet(g_CHECKTOOLSTYLE);
@@ -298,19 +298,19 @@ void MainWgt::initWidget()
                                  min-height:20px;\
                                  ");
 
-    QStandardItemModel *pModel = new QStandardItemModel();//Ìí¼ÓÌáÊ¾tootip
+    QStandardItemModel *pModel = new QStandardItemModel();//æ·»åŠ æç¤ºtootip
 
-    QStandardItem *item = new QStandardItem(QStringLiteral("ÊÖ¶¯¸üĞÂ"));
-    item->setToolTip(QStringLiteral("¼¸ºõ²»Ó°ÏìĞÔÄÜ"));
+    QStandardItem *item = new QStandardItem(("æ‰‹åŠ¨æ›´æ–°"));
+    item->setToolTip(("å‡ ä¹ä¸å½±å“æ€§èƒ½"));
     pModel->appendRow(item);
-    item = new QStandardItem(QStringLiteral("ÊµÊ±¸üĞÂ"));
-    item->setToolTip(QStringLiteral("ĞÔÄÜËğÊ§´ó"));
+    item = new QStandardItem(("å®æ—¶æ›´æ–°"));
+    item->setToolTip(("æ€§èƒ½æŸå¤±å¤§"));
     pModel->appendRow(item);
-    item = new QStandardItem(QStringLiteral("³¡¾°¸Ä±ä"));
-    item->setToolTip(QStringLiteral("³¡¾°¸Ä±äÊ±Ó°Ïì(ÍÆ¼ö)"));
+    item = new QStandardItem(("åœºæ™¯æ”¹å˜"));
+    item->setToolTip(("åœºæ™¯æ”¹å˜æ—¶å½±å“(æ¨è)"));
     pModel->appendRow(item);
     pShadowUpDate->setModel(pModel);
-    pShadowUpDate->setToolTip(QStringLiteral("ÒõÓ°¸üĞÂ"));
+    pShadowUpDate->setToolTip(("é˜´å½±æ›´æ–°"));
     pToolBar->addWidget(pShadowUpDate);
 //    pToolBar->addSeparator();
 
@@ -319,11 +319,11 @@ void MainWgt::initWidget()
     pToolBar->addWidget(spacer);
 
     QtColorButton *pColorBtn = new QtColorButton;
-    pColorBtn->setToolTip(QStringLiteral("±³¾°É«"));
+    pColorBtn->setToolTip(("èƒŒæ™¯è‰²"));
     pColorBtn->setColor(QColor(0*255, 0.4f*255, 0.6f*255, 1.0f*255));
     pToolBar->addWidget(pColorBtn);
     m_pLightWgtBtn = new QToolButton();
-    m_pLightWgtBtn->setText(QStringLiteral("¹âÕÕ"));
+    m_pLightWgtBtn->setText(("å…‰ç…§"));
     m_pLightWgtBtn->setStyleSheet("QToolButton{"
                                       "color: white;"
                                       "outline: 0px solid gray;"
@@ -345,7 +345,7 @@ void MainWgt::initWidget()
     pToolBar->addWidget(m_pLightWgtBtn);
     toolBar->addWidget(pToolBar);
 
-    //ÉèÖÃ¹ıÂËÆ÷£¬8¸öLabel×÷Îª±ß¿ò£¬¹ıÂËµÄÊó±êÊÂ¼ş
+    //è®¾ç½®è¿‡æ»¤å™¨ï¼Œ8ä¸ªLabelä½œä¸ºè¾¹æ¡†ï¼Œè¿‡æ»¤çš„é¼ æ ‡äº‹ä»¶
     leftTopLabel->installEventFilter(this);
     topLabel->installEventFilter(this);
     rightTopLabel->installEventFilter(this);
@@ -355,10 +355,10 @@ void MainWgt::initWidget()
     bottomLabel->installEventFilter(this);
     rightBottomLabel->installEventFilter(this);
 
-    //ÉèÖÃÀ­Éì±ß¿ò¸Ä±ä´óĞ¡µÄ²ÎÊı
-    mWp = unKnown; //ÉèÖÃÀ­Éì±ß¿ò³õÊ¼±êÖ¾Îª unKnow£¬ ÕâÊÇÒ»¸öÃ¶¾ÙĞÍ±äÁ¿
-    m_bPressed = false;  // ÉèÖÃÊó±ê°´ÏÂµÄ×´Ì¬£¬Èç¹ûÊó±êÔÚ±ß¿òLabelÉÏÍÏ¶¯£¬Ôò¸Ä²ÎÊıÎªfalse.
-    mouseEvent = nullptr;  //ÉèÖÃÊó±êÊÂ¼şµÄ³õÊ¼Öµ,Ä¬ÈÏÎªnull
+    //è®¾ç½®æ‹‰ä¼¸è¾¹æ¡†æ”¹å˜å¤§å°çš„å‚æ•°
+    mWp = unKnown; //è®¾ç½®æ‹‰ä¼¸è¾¹æ¡†åˆå§‹æ ‡å¿—ä¸º unKnowï¼Œ è¿™æ˜¯ä¸€ä¸ªæšä¸¾å‹å˜é‡
+    m_bPressed = false;  // è®¾ç½®é¼ æ ‡æŒ‰ä¸‹çš„çŠ¶æ€ï¼Œå¦‚æœé¼ æ ‡åœ¨è¾¹æ¡†Labelä¸Šæ‹–åŠ¨ï¼Œåˆ™æ”¹å‚æ•°ä¸ºfalse.
+    mouseEvent = nullptr;  //è®¾ç½®é¼ æ ‡äº‹ä»¶çš„åˆå§‹å€¼,é»˜è®¤ä¸ºnull
 
     m_pWindowsTaskbarButton = new QWinTaskbarButton(this);
 
@@ -412,13 +412,13 @@ void MainWgt::initWidget()
 
 //void MainWgt::paintEvent(QPaintEvent *event)
 //{
-//    // »æÍ¼´¦Àí
-//    // ÖØ»æ´°¿ÚµÄ±³¾°ÑÕÉ«
+//    // ç»˜å›¾å¤„ç†
+//    // é‡ç»˜çª—å£çš„èƒŒæ™¯é¢œè‰²
 //    QPalette palette = this->palette();
 //    QColor color(100,100,100);
 //    palette.setBrush(QPalette::Window, QBrush(color));
 //    this->setPalette(palette);
-//    // ÖØ»æ´°¿ÚµÄ±ß¿ò´óĞ¡
+//    // é‡ç»˜çª—å£çš„è¾¹æ¡†å¤§å°
 //    QPainter painter(this);
 //    QRect rect = this->rect();
 //    QPen pen;
@@ -432,10 +432,10 @@ void MainWgt::initWidget()
 
 bool MainWgt::eventFilter(QObject *target, QEvent *event)
 {
-    // Èç¹û¹ıÂËÊÂ¼şÊÇÊó±ê°´ÏÂ£¬ÉèÖÃ¸Ä±ä´°¿Ú´óĞ¡µÄ±êÖ¾ÎªÊó±ê°´ÏÂ×´Ì¬¡£
+    // å¦‚æœè¿‡æ»¤äº‹ä»¶æ˜¯é¼ æ ‡æŒ‰ä¸‹ï¼Œè®¾ç½®æ”¹å˜çª—å£å¤§å°çš„æ ‡å¿—ä¸ºé¼ æ ‡æŒ‰ä¸‹çŠ¶æ€ã€‚
          if(event->type() == QEvent::MouseButtonPress)
          {
-             //¼ì²âÊÇÄÄÌõ±ß¿ò°´ÏÂ
+             //æ£€æµ‹æ˜¯å“ªæ¡è¾¹æ¡†æŒ‰ä¸‹
              mWp = testLabelBorder(target->objectName());
             if(mWp == LabelBorderStatus::unKnown)
             {
@@ -447,36 +447,36 @@ bool MainWgt::eventFilter(QObject *target, QEvent *event)
                  mouseEvent = static_cast<QMouseEvent*>(event);
                  if(mouseEvent )
                  {
-                     // »ñÈ¡Êó±ê°´ÏÂµÄ¶¨Î»¡£
+                     // è·å–é¼ æ ‡æŒ‰ä¸‹çš„å®šä½ã€‚
                      pLast = mouseEvent->globalPos();
                      event->ignore();
                  }
             }
          }
-         // Èç¹ûÊÇÊó±êÊÍ·ÅÊÂ¼ş£¬ÉèÖÃÍÏ¶¯±êÖ¾Î»³õÊ¼×´Ì¬¡£
+         // å¦‚æœæ˜¯é¼ æ ‡é‡Šæ”¾äº‹ä»¶ï¼Œè®¾ç½®æ‹–åŠ¨æ ‡å¿—ä½åˆå§‹çŠ¶æ€ã€‚
          else if(event->type() == QEvent::MouseButtonRelease)
          {
              m_bPressed = false;
              mWp = LabelBorderStatus::unKnown;
          }
-         // Èç¹û¹ıÂËÊÂ¼şÊÇÊó±êÒÆ¶¯ÊÂ¼ş£¬´¦ÀíÊÇ·ñÍÏ¶¯±ß¿ò¸Ä±ä´°¿Ú´óĞ¡
+         // å¦‚æœè¿‡æ»¤äº‹ä»¶æ˜¯é¼ æ ‡ç§»åŠ¨äº‹ä»¶ï¼Œå¤„ç†æ˜¯å¦æ‹–åŠ¨è¾¹æ¡†æ”¹å˜çª—å£å¤§å°
          else if(event->type() == QEvent::MouseMove)
          {
-             //¼ì²âÊó±êÊÇ·ñ°´ÏÂ£¬²¢ÇÒÍÏ¶¯µÄ±ß¿òÀàĞÍ
+             //æ£€æµ‹é¼ æ ‡æ˜¯å¦æŒ‰ä¸‹ï¼Œå¹¶ä¸”æ‹–åŠ¨çš„è¾¹æ¡†ç±»å‹
              if(m_bPressed && mWp != LabelBorderStatus::unKnown)
               {
                  mouseEvent = nullptr;
                  mouseEvent = static_cast<QMouseEvent*>(event);
                  if(mouseEvent)
                  {
-                     //»ñÈ¡Êó±êÍÏ¶¯µÄÎ»ÖÃ£¬
+                     //è·å–é¼ æ ‡æ‹–åŠ¨çš„ä½ç½®ï¼Œ
                      QPoint ptemp = mouseEvent->globalPos();
-                     // ¼ÆËãÊó±ê°´ÏÂ²¢ÍÏ¶¯µÄµÄÎ»ÒÆ
+                     // è®¡ç®—é¼ æ ‡æŒ‰ä¸‹å¹¶æ‹–åŠ¨çš„çš„ä½ç§»
                      ptemp = ptemp - pLast ;
-                     //±£´æµ±Ç°Êó±êÍÏ¶¯µÄÎ»ÖÃ£¬ÓÃÓÚÏÂÒ»´Î¼ÆËãÍÏ¶¯Î»ÒÆ
+                     //ä¿å­˜å½“å‰é¼ æ ‡æ‹–åŠ¨çš„ä½ç½®ï¼Œç”¨äºä¸‹ä¸€æ¬¡è®¡ç®—æ‹–åŠ¨ä½ç§»
                      pLast = mouseEvent->globalPos();
                      event->ignore();
-                     // À­Éì´°¿Úº¯Êı
+                     // æ‹‰ä¼¸çª—å£å‡½æ•°
                      moveAndResizeWindow(ptemp);
                  }
              }
@@ -501,58 +501,58 @@ void MainWgt::moveAndResizeWindow(QPoint &pos)
 {
     if(this->isMaximized()) return;
     int x=0,y=0,w=0,h=0;
-    // ¸ù¾İÍÏ¶¯µÄÄÇÒ»Ìõ±ß¿ò£¬È·¶¨À­Éì»¹ÊÇËõĞ¡´°¿Ú¡£
+    // æ ¹æ®æ‹–åŠ¨çš„é‚£ä¸€æ¡è¾¹æ¡†ï¼Œç¡®å®šæ‹‰ä¼¸è¿˜æ˜¯ç¼©å°çª—å£ã€‚
     switch (mWp) {
-     // ×ó±ß¿ò±»À­Éì
+     // å·¦è¾¹æ¡†è¢«æ‹‰ä¼¸
      case LabelBorderStatus::toLeft:
          x = this->pos().x() + pos.x();
          y = this->pos().y();
          w = this->size().width() - pos.x();
          h = this->size().height();
         break;
-      // ÓÒ±ß¿ò±»À­Éì
+      // å³è¾¹æ¡†è¢«æ‹‰ä¼¸
      case LabelBorderStatus::toRight:
          x = this->pos().x();
          y = this->pos().y();
          w = this->size().width() + pos.x();
          h = this->size().height();
          break;
-         // ÉÏ±ß¿ò±»À­Éì
+         // ä¸Šè¾¹æ¡†è¢«æ‹‰ä¼¸
      case LabelBorderStatus::toTop:
          x = this->pos().x();
          y = this->pos().y() + pos.y();
          w = this->size().width() ;
          h = this->size().height() - pos.y();
          break;
-         // ÏÂ±ß¿ò±»À­Éì
+         // ä¸‹è¾¹æ¡†è¢«æ‹‰ä¼¸
      case LabelBorderStatus::toBottom:
          x = this->pos().x();
          y = this->pos().y();
          w = this->size().width() ;
          h = this->size().height() + pos.y();
          break;
-         //ÓÒÉÏ½Ç±»À­Éì
+         //å³ä¸Šè§’è¢«æ‹‰ä¼¸
      case LabelBorderStatus::toRightTop:
          x = this->pos().x();
          y = this->pos().y() + pos.y();
          w = this->size().width() + pos.x() ;
          h = this->size().height() - pos.y();
          break;
-         //×óÉÏ½Ç±»À­Éì
+         //å·¦ä¸Šè§’è¢«æ‹‰ä¼¸
      case LabelBorderStatus::toLeftTop:
          x = this->pos().x() + pos.x();
          y = this->pos().y() + pos.y();
          w = this->size().width() - pos.x() ;
          h = this->size().height() - pos.y();
          break;
-         // ÓÒÏÂ½Ç±»À­Éì
+         // å³ä¸‹è§’è¢«æ‹‰ä¼¸
      case LabelBorderStatus::toRightBottom:
          x = this->pos().x();
          y = this->pos().y();
          w = this->size().width() + pos.x() ;
          h = this->size().height() + pos.y();
          break;
-         // ×óÏÂ½Ç±»À­Éì
+         // å·¦ä¸‹è§’è¢«æ‹‰ä¼¸
      case LabelBorderStatus::toLeftBottom:
          x = this->pos().x() + pos.x();
          y = this->pos().y();
@@ -562,7 +562,7 @@ void MainWgt::moveAndResizeWindow(QPoint &pos)
      default:
          return;
      }
-    // ¸Ä±ä´°¿ÚµÄ´óĞ¡ºÍÎ»ÖÃ¡£
+    // æ”¹å˜çª—å£çš„å¤§å°å’Œä½ç½®ã€‚
      if(w < this->minimumWidth())
      {
          x = this->pos().x();
