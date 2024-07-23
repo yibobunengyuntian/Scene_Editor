@@ -1,0 +1,35 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/icon/view_cube.png</file>
+        <file>res/icon/res.png</file>
+        <file>res/icon/running.png</file>
+        <file>res/shader/view_cube.frag</file>
+        <file>res/shader/view_cube.vert</file>
+        <file>res/icon/addmodel.png</file>
+        <file>res/icon/close.png</file>
+        <file>res/icon/maximize.png</file>
+        <file>res/icon/minimize.png</file>
+        <file>res/icon/mesh.png</file>
+        <file>res/icon/tite.png</file>
+        <file>res/gif/loading.gif</file>
+        <file>res/shader/shapes.frag</file>
+        <file>res/shader/shapes.vert</file>
+        <file>res/icon/modelIcon.png</file>
+        <file>res/model/floor/floor.png</file>
+        <file>res/model/floor/floor.mtl</file>
+        <file>res/model/floor/floor.obj</file>
+        <file>res/icon/model_icon.png</file>
+        <file>res/icon/mesh_icon.png</file>
+        <file>res/icon/mou.png</file>
+        <file>res/shader/depthMap.frag</file>
+        <file>res/shader/depthMap.vert</file>
+        <file>res/icon/shadow.png</file>
+        <file>res/gif/earth_rotate.gif</file>
+        <file>res/gif/load.gif</file>
+        <file>res/gif/background.gif</file>
+        <file>res/icon/redo.png</file>
+        <file>res/icon/undo.png</file>
+        <file>res/icon/save.png</file>
+        <file>res/icon/open.png</file>
+    </qresource>
+</RCC>

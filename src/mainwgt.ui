@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWgt</class>
+ <widget class="QWidget" name="MainWgt">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1066</width>
+    <height>755</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Tahoma</family>
+    <weight>50</weight>
+    <italic>false</italic>
+    <bold>false</bold>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget{
+	font: &quot;Tahoma&quot;;
+}
+QScrollBar:vertical {
+    border: none;
+	border-radius: 4px;
+    width: 8px;
+	background-color: rgba(0, 0, 0, 50);
+    margin: 2px 0 2px 0;
+}
+QScrollBar::handle:vertical {
+    border: none;
+    border-radius: 4px;
+    background-color:  rgb(0, 0, 0);
+    height: 60px;
+    margin: 0px 0px 0px 0px;
+}
+QScrollBar::add-line:vertical {
+	border: none;
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    border: none;
+    height: 0px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+QScrollBar::down-arrow:vertical {
+    border:none;
+}
+QScrollBar::up-arrow:vertical {
+    border:none;
+}
+QScrollBar::add-page:vertical {
+    background-color: rgba(0, 0, 0, 50);
+}
+QScrollBar::sub-page:vertical {
+    background-color: rgba(0, 0, 0, 50);
+}
+QToolTip{border:1px solid rgb(118, 118, 118); background-color: #ffffff; color:#484848; font: 12px &quot;Tahoma&quot;;}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <item row="1" column="2">
+    <widget class="QLabel" name="rightLabel">
+     <property name="minimumSize">
+      <size>
+       <width>3</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>3</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="cursor">
+      <cursorShape>SizeHorCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 0);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLabel" name="topLabel">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>3</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>3</height>
+      </size>
+     </property>
+     <property name="cursor">
+      <cursorShape>SizeVerCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 0);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="leftBottomLabel">
+     <property name="minimumSize">
+      <size>
+       <width>3</width>
+       <height>3</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>3</width>
+       <height>3</height>
+      </size>
+     </property>
+     <property name="cursor">
+      <cursorShape>SizeBDiagCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 0);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="leftTopLabel">
+     <property name="minimumSize">
+      <size>
+       <width>3</width>
+       <height>3</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>3</width>
+       <height>3</height>
+      </size>
+     </property>
+     <property name="cursor">
+      <cursorShape>SizeFDiagCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 0);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <item>
+      <layout class="QHBoxLayout" name="tite"/>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="toolBar"/>
+     </item>
+     <item>
+      <widget class="QWidget" name="widget" native="true">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(0, 0, 0);</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="Layout">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="2">
+    <widget class="QLabel" name="rightBottomLabel">
+     <property name="minimumSize">
+      <size>
+       <width>3</width>
+       <height>3</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>3</width>
+       <height>3</height>
+      </size>
+     </property>
+     <property name="cursor">
+      <cursorShape>SizeFDiagCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 0);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QLabel" name="rightTopLabel">
+     <property name="minimumSize">
+      <size>
+       <width>3</width>
+       <height>3</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>3</width>
+       <height>3</height>
+      </size>
+     </property>
+     <property name="cursor">
+      <cursorShape>SizeBDiagCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 0);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="leftLabel">
+     <property name="minimumSize">
+      <size>
+       <width>3</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>3</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="cursor">
+      <cursorShape>SizeHorCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 0);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QLabel" name="bottomLabel">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>3</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>3</height>
+      </size>
+     </property>
+     <property name="cursor">
+      <cursorShape>SizeVerCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 0);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

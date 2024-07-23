@@ -1,0 +1,57 @@
+#ifndef PLC_H
+#define PLC_H
+
+#include <QWidget>
+#include <QOpenGLWidget>
+#include <QSharedPointer>
+#include <QOpenGLShaderProgram>
+#include <QOpenGLBuffer>
+#include <QOpenGLVertexArrayObject>
+#include <QOpenGLTexture>
+#include <QTimer>
+#include <QTime>
+#include <QtMath>
+#include <QKeyEvent>
+#include <QSplashScreen>
+#include <QFileDialog>
+#include <QLabel>
+#include <QtConcurrent>
+#include <QBitmap>
+#include <QMap>
+#include <QPainter>
+#include <QMouseEvent>
+#include <QToolBar>
+#include <QComboBox>
+#include <QSplitter>
+#include <QGridLayout>
+#include <QMenu>
+#include <QDrag>
+#include <QMessageBox>
+#include <QWinTaskbarButton>
+#include <QWinTaskbarProgress>
+
+#include "Camera/camera.h"
+#include "Camera/cameratool.h"
+#include "Light/lightwgt.h"
+#include "Manipulator/manipulatorbase.h"
+#include "Manipulator/manipulatorrotate.h"
+#include "Manipulator/manipulatorscale.h"
+#include "Manipulator/manipulatortranslate.h"
+#include "PropertyManager/propertyswgt.h"
+#include "ToolWgts/checkboxmenu.h"
+#include "ToolWgts/loadingwgt.h"
+#include "ToolWgts/tipwgt.h"
+#include "ToolWgts/titebar.h"
+#include "ToolWgts/viewcube.h"
+#include "ToolWgts/loadingwgt.h"
+#include "ToolWgts/newprojectwgt.h"
+#include "ToolWgts/MultiCombox/multicombox.h"
+#include "ToolWgts/MultiCombox/menuitem.h"
+#include "ToolWgts/QtColorButton/qtcolorbutton.h"
+#include "ToolWgts/StartWgt/startwgt.h"
+#include "PropertyManager/nodestreewgt.h"
+#include "PropertyManager/nodeeditwgt.h"
+#include "PropertyManager/Nodes/model.h"
+#include "PropertyManager/Components/component_includes.h"
+
+#endif // PLC_H
