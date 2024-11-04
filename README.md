@@ -12,6 +12,6 @@
 
 ## 效果图：
 
-![4629cbb94f6d48ec9420ca39b828e21c](https://github.com/user-attachments/assets/3f677c4d-ef2d-4edb-81bb-91651b9fe019)
+![](效果图/1.gif)
 
-![791b6601ee63466e8f17fad3c507d1d8](https://github.com/user-attachments/assets/98c02260-a1e9-472a-afaa-e29c664802d8)
+![](效果图/2.gif)
