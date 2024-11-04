@@ -14,7 +14,8 @@
 
 ## 效果图：
 
-![4629cbb94f6d48ec9420ca39b828e21c](https://i-blog.csdnimg.cn/direct/4629cbb94f6d48ec9420ca39b828e21c.gif)
 
-![791b6601ee63466e8f17fad3c507d1d8](https://i-blog.csdnimg.cn/direct/791b6601ee63466e8f17fad3c507d1d8.gif)
+![4629cbb94f6d48ec9420ca39b828e21c](https://github.com/user-attachments/assets/380e3c27-5867-409b-a8c2-82f3a330aabb)
 
+
+![791b6601ee63466e8f17fad3c507d1d8](https://github.com/user-attachments/assets/65cb14d7-68d3-43af-9341-63072615200c)
