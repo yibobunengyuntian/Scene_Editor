@@ -12,6 +12,6 @@
 
 ## 效果图：
 
-![](效果图/1.gif)
+![](https://i-blog.csdnimg.cn/direct/4629cbb94f6d48ec9420ca39b828e21c.gif)
 
-![](效果图/2.gif)
+![](https://i-blog.csdnimg.cn/direct/791b6601ee63466e8f17fad3c507d1d8.gif)
